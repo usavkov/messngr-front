@@ -1,0 +1,14 @@
+.main-wrapper {
+  height: 100vh;
+}
+
+@media screen and (max-width: 767px) {
+  .main-wrapper {
+    flex-direction: column;
+    height: auto;
+  }
+}
+
+.sign-up-form_heading {
+  padding: 2em 0;
+};
