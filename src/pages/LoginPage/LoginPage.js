@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Row,
@@ -7,9 +8,9 @@ import {
   Button,
   ButtonGroup,
 } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 import { PAGE_SIGN_UP } from '../../constants';
+import { Input } from '../../components';
 
 export const LoginPage = () => {
   const { register, handleSubmit } = useForm();
@@ -19,39 +20,42 @@ export const LoginPage = () => {
     <Container>
       <Row className='justify-content-center'>
         <Col xs={10} md={8} lg={6}>
-          <h1 className='sign-up-form_heading'>Login</h1>
+          <h1 className='py-5'>Login</h1>
 
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <Form.Group className='mb-3' controlId='emailGroup'>
-              <Form.Label>Login</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Enter login'
-                {...register('login')}
-              />
-            </Form.Group>
+            <Input
+              id='login'
+              label='Login'
+              placeholder='Login'
+              labelType='floating'
+              className='mb-3'
+              register={register}
+              required
+            />
+            <Input
+              id='password'
+              label='Password'
+              placeholder='Password'
+              labelType='floating'
+              className='mb-3'
+              register={register}
+              required
+            />
+            <Input
+              id='isRememberMe'
+              type='checkbox'
+              label='Remember me'
+              className='mb-5'
+              register={register}
+              inline
+            />
 
-            <Form.Group className='mb-3' controlId='passwordGroup'>
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type='password'
-                placeholder='Password'
-                {...register('password')}
-              />
-            </Form.Group>
-            <Form.Group className='mb-3' controlId='formBasicCheckbox'>
-              <Form.Check
-                type='checkbox'
-                label='Remember me'
-                {...register('isRememberMe')}
-              />
-            </Form.Group>
-            <Button className='mb-3' variant='primary' type='submit'>
+            <Button className='mb-4' variant='primary' type='submit'>
               Submit
             </Button>
           </Form>
 
-          <ButtonGroup className="mb-5">
+          <ButtonGroup className='mb-5'>
             <Button to={PAGE_SIGN_UP} as={Link} variant='link' size='sm'>
               Don't have an account?
             </Button>

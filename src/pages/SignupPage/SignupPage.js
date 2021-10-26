@@ -12,12 +12,15 @@ import { InfoCircle } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 
 import { PAGE_LOGIN } from '../../constants';
+import { Input } from '../../components';
 
 import './SignupPage.scss';
 
 export const SignupPage = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data)
+  };
 
   return (
     <Container fluid>
@@ -41,47 +44,50 @@ export const SignupPage = () => {
         <Col lg={5}>
           <Row className='justify-content-center'>
             <Col xs={12} md={10} lg={8}>
-              <h1 className='sign-up-form_heading'>Sign up</h1>
-
               <Form onSubmit={handleSubmit(onSubmit)}>
-                <Form.Group className='mb-3' controlId='emailGroup'>
-                  <Form.Label>Username</Form.Label>
-                  <Form.Control
-                    type='email'
-                    placeholder='Username'
-                    {...register('email')}
+                <h1
+                  className='py-5'
+                >
+                  Sign up
+                </h1>
+                <Input
+                  id='username'
+                  label={<Form.Label>Username</Form.Label>}
+                  placeholder='Username'
+                  className="mb-2"
+                  register={register}
+                  required
                   />
-                </Form.Group>
-                <Form.Group className='mb-3' controlId='emailGroup'>
-                  <Form.Label>Email address</Form.Label>
-                  <OverlayTrigger
-                    overlay={
-                      <Popover id='popover-basic'>
-                        <Popover.Body>
-                          We'll never share your email with anyone else!
-                        </Popover.Body>
-                      </Popover>
-                    }
-                    placement='auto'
-                  >
-                    <InfoCircle color='darkgray' className='mx-2' />
-                  </OverlayTrigger>
-                  <Form.Control
-                    type='email'
-                    placeholder='Email'
-                    {...register('email')}
-                  />
-                </Form.Group>
-
-                <Form.Group className='mb-3' controlId='passwordGroup'>
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type='password'
-                    placeholder='Password'
-                    {...register('password')}
-                  />
-                </Form.Group>
-                <Button className='mb-3' variant='primary' type='submit'>
+                <Input
+                  id='email'
+                  type="email"
+                  label={<Form.Label>Email</Form.Label>}
+                  placeholder='Email'
+                  labelIcon={InfoCircle}
+                  popoverContent="We'll never share your email with anyone else!"
+                  className="mb-2"
+                  register={register}
+                  required
+                />
+                <Input
+                  id='password'
+                  type='password'
+                  label={<Form.Label>Password</Form.Label>}
+                  placeholder='Password'
+                  className="mb-2"
+                  register={register}
+                  required
+                />
+                <Input
+                  id='confirmPassword'
+                  type='password'
+                  label={<Form.Label size="sm">Confirm password</Form.Label>}
+                  placeholder='Confirm password'
+                  className="mb-4"
+                  register={register}
+                  required
+                />
+                <Button className='mb-3' variant='success' type='submit'>
                   Submit
                 </Button>
               </Form>
