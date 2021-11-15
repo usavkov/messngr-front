@@ -1,20 +1,58 @@
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import { gql, useLazyQuery } from '@apollo/client';
 import {
   Container,
   Row,
   Col,
   Form,
   Button,
-  ButtonGroup,
 } from 'react-bootstrap';
 
-import { PAGE_SIGN_UP } from '../../constants';
+import { ACTION_LOGIN, PAGE_HOME, PAGE_SIGN_UP } from '../../constants';
 import { Input } from '../../components';
+import { useAuth } from '../../utils';
+
+const LOGIN = gql`
+  query Login(
+    $login: String!
+    $password: String!
+  ) {
+    login(
+      login: $login
+      password: $password
+    ) {
+      id
+      username
+      email
+      createdAt
+      token
+    }
+  }
+`;
 
 export const LoginPage = () => {
+  const [, authDispatch] = useAuth();
+  const history = useHistory();
+  const location = useLocation();
+  const [login, { data, errors, loading }] = useLazyQuery(LOGIN, {
+    onError(err) {
+      console.log(err);
+    },
+    onCompleted({ login }) {
+      authDispatch({type: ACTION_LOGIN, payload: data});
+
+      history.push({
+        pathname: location.state?.backPathname ?? PAGE_HOME,
+        search: location.search,
+      })
+    }
+  })
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = (variables) => {
+    login({ variables })
+  };
 
   return (
     <Container>
@@ -35,6 +73,7 @@ export const LoginPage = () => {
             <Input
               id='password'
               label='Password'
+              type='password'
               placeholder='Password'
               labelType='floating'
               className='mb-3'
@@ -50,19 +89,23 @@ export const LoginPage = () => {
               inline
             />
 
-            <Button className='mb-4' variant='primary' type='submit'>
+            <Button
+              className='mb-4 text-center'
+              variant='primary'
+              type='submit'
+            >
               Submit
             </Button>
           </Form>
 
-          <ButtonGroup className='mb-5'>
-            <Button to={PAGE_SIGN_UP} as={Link} variant='link' size='sm'>
-              Don't have an account?
-            </Button>
-            <Button to='#' as={Link} variant='link' size='sm'>
-              Forgot password?
-            </Button>
-          </ButtonGroup>
+          <span className='d-flex justify-content-center'>
+            <small className='mx-2'>
+              Don't have an account? <Link to={PAGE_SIGN_UP} children='Sign up' />
+            </small>
+            <small className='mx-2'>
+              Forgot password? <Link to='#' children='Click here' />
+            </small>
+          </span>
         </Col>
       </Row>
     </Container>

@@ -15,6 +15,8 @@ export const Input = ({
   disabled,
   inline,
   required,
+  isInvalid,
+  registerOptions = {},
   size,
   ...rest
 }) => {
@@ -56,7 +58,8 @@ export const Input = ({
         inline={inline}
         required={required}
         size={size}
-        {...register(`${id}`)}
+        isInvalid={isInvalid}
+        {...register(`${id}`, registerOptions)}
       />
       {isStandardLabel && type === 'checkbox' && label}
     </InputWrapper>

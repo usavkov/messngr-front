@@ -3,10 +3,12 @@ import { Switch, Route } from 'react-router-dom';
 import {
   PAGE_SIGN_UP,
   PAGE_LOGIN,
-  PAGE_HOME
+  PAGE_HOME,
+  PAGE_MAIN,
 } from '../constants';
 import {
   HomePage,
+  MainPage,
   LoginPage,
   SignupPage,
 } from '../pages';
@@ -19,6 +21,10 @@ const App = () => (
       exact
       path={PAGE_HOME}
       component={HomePage}
+    />
+    <Route
+      path={PAGE_MAIN}
+      component={MainPage}
     />
     <Route
       exact
