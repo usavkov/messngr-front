@@ -1,3 +1,4 @@
+export const ROUTE_ROOT = '/';
 export const PAGE_HOME = '/';
 export const PAGE_MAIN = '/main';
 export const PAGE_SIGN_UP = '/signup';

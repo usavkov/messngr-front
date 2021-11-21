@@ -1,11 +1,21 @@
-import { NavLink, useRouteMatch } from 'react-router-dom';
+import { Nav } from 'react-bootstrap';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 export const Navigation = ({ links }) => {
-  const { path } = useRouteMatch()
+  const { path } = useRouteMatch();
 
-  return links.map(({ to, label }) => (
-    <NavLink to={`${path}/${to}`} key={`link-to-${to}`}>
-      {label}
-    </NavLink>
-  ));
+  return (
+    <Nav className='justify-content-end'>
+      {links.map(({ to = '', label, ...rest }) => (
+        <Nav.Link
+          as={Link}
+          to={`${path}${to}`}
+          key={`link-to-${to}`}
+          {...rest}
+        >
+          {label}
+        </Nav.Link>
+      ))}
+    </Nav>
+  );
 };
