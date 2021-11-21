@@ -11,7 +11,7 @@ export const DynamicRoute = ({
   guest,
   ...rest
 }) => {
-  const [{ user }] = useAuth();
+  const { user } = useAuth();
 
   if (authorized && !user) return <Redirect to={PAGE_LOGIN} />;
   if (guest && user) return <Redirect to={PAGE_HOME} />;

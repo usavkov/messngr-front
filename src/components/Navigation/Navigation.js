@@ -1,11 +1,11 @@
 import { Nav } from 'react-bootstrap';
 import { Link, useRouteMatch } from 'react-router-dom';
 
-export const Navigation = ({ links }) => {
+export const Navigation = ({ links, ...rest }) => {
   const { path } = useRouteMatch();
 
   return (
-    <Nav className='justify-content-end'>
+    <Nav className='justify-content-end' {...rest}>
       {links.map(({ to = '', label, ...rest }) => (
         <Nav.Link
           as={Link}

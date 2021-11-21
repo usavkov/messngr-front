@@ -32,7 +32,7 @@ const LOGIN = gql`
 `;
 
 export const LoginPage = () => {
-  const [, authDispatch] = useAuth();
+  const { authDispatch } = useAuth();
   const history = useHistory();
   const location = useLocation();
   const [login, { data, errors, loading }] = useLazyQuery(LOGIN, {
