@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { gql, useLazyQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import {
   Container,
   Row,
@@ -9,27 +9,10 @@ import {
   Button,
 } from 'react-bootstrap';
 
+import { LOGIN } from '../../GraphQL/queries';
 import { ACTION_LOGIN, PAGE_HOME, PAGE_SIGN_UP } from '../../constants';
 import { Input } from '../../components';
 import { useAuth } from '../../utils';
-
-const LOGIN = gql`
-  query Login(
-    $login: String!
-    $password: String!
-  ) {
-    login(
-      login: $login
-      password: $password
-    ) {
-      id
-      username
-      email
-      createdAt
-      token
-    }
-  }
-`;
 
 export const LoginPage = () => {
   const { authDispatch } = useAuth();

@@ -2,33 +2,13 @@ import { useForm } from 'react-hook-form';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { InfoCircle } from 'react-bootstrap-icons';
 import { Link, useHistory } from 'react-router-dom';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 
 import { PAGE_LOGIN } from '../../constants';
 import { Input } from '../../components';
+import { SIGN_UP } from '../../GraphQL/mutations';
 
 import './SignupPage.scss';
-
-const SIGN_UP = gql`
-  mutation Signup(
-    $username: String!
-    $email: String!
-    $password: String!
-    $confirmPassword: String!
-  ) {
-    signup(
-      username: $username
-      email: $email
-      password: $password
-      confirmPassword: $confirmPassword
-    ) {
-      id
-      username
-      email
-      createdAt
-    }
-  }
-`;
 
 export const SignupPage = () => {
   const history = useHistory();
