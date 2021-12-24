@@ -1,6 +1,4 @@
-import { useLazyQuery } from '@apollo/client';
 import { useForm } from 'react-hook-form';
-import { useHistory, useLocation } from 'react-router-dom';
 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {
@@ -13,37 +11,19 @@ import {
   Typography,
 } from '@mui/material';
 
-import { LOGIN } from '../../GraphQL/queries';
-
 import {
   Checkbox,
   TextField,
 } from '../../common/components';
-import { ACTION_LOGIN, PAGE_HOME, PAGE_SIGN_UP } from '../../constants';
-import { useAuth } from '../../utils';
+import { useLogin } from '../../common/hooks';
+import { PAGE_SIGN_UP } from '../../constants';
 
 export const LoginPage = () => {
-  const { authDispatch } = useAuth();
-  const history = useHistory();
-  const location = useLocation();
-  const [login, { data, errors, loading }] = useLazyQuery(LOGIN, {
-    onError(err) {
-      console.log(err);
-    },
-    onCompleted({ login }) {
-      authDispatch({type: ACTION_LOGIN, payload: data});
-
-      history.push({
-        pathname: location.state?.backPathname ?? PAGE_HOME,
-        search: location.search,
-      })
-    }
-  })
   const { control, handleSubmit } = useForm();
 
-  const onSubmit = (variables) => {
-    login({ variables });
-  };
+  const login = useLogin();
+
+  const onSubmit = (variables) => login({ variables });
 
   return (
     <Container
@@ -114,7 +94,7 @@ export const LoginPage = () => {
                 Forgot password?
               </Link>
             </Grid>
-            <Grid item s>
+            <Grid item>
               <Link href={PAGE_SIGN_UP} variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>

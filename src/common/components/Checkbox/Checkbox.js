@@ -11,8 +11,8 @@ const CheckboxComponent = ({
 }) => {
   const {
     field: { value, ...field },
-    fieldState,
-    formState,
+    // fieldState,
+    // formState,
   } = useController({
     name,
     control,

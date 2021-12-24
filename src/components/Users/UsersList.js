@@ -1,13 +1,12 @@
-import { useState } from 'react';
-import { Container, Row } from 'react-bootstrap';
-import { Table, Button } from 'antd';
 import { useQuery } from '@apollo/client';
+import { useState } from 'react';
 
-import { USERS } from '../../GraphQL/queries';
+import { GET_ALL_USERS } from '../../GraphQL/queries';
+
 import { columns } from './tableConfig';
 
 export const UsersList = () => {
-  const { data, errors, loading } = useQuery(USERS);
+  const { data, errors, loading } = useQuery(GET_ALL_USERS);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
   const rowSelection = {
@@ -18,15 +17,6 @@ export const UsersList = () => {
   const tableData = data?.users?.map(user => ({ key: user.id, ...user }))
 
   return (
-    <Container>
-      <Row>
-        <Table
-          rowSelection={rowSelection}
-          columns={columns}
-          dataSource={tableData}
-          loading={loading}
-        />
-      </Row>
-    </Container>
+    <>Hi, users</>
   );
 };

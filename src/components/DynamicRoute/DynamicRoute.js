@@ -16,5 +16,12 @@ export const DynamicRoute = ({
   if (authorized && !user) return <Redirect to={PAGE_LOGIN} />;
   if (guest && user) return <Redirect to={PAGE_HOME} />;
 
-  return <Route exact={exact} path={path} component={component} {...rest} />;
+  return (
+    <Route
+      exact={exact}
+      path={path}
+      component={component}
+      {...rest}
+    />
+  );
 };

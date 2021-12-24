@@ -1,2 +1,2 @@
 export { LOGIN } from './login';
-export { USERS } from './users';
+export { GET_ALL_USERS } from './getAllUsers';

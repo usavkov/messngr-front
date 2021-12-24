@@ -10,8 +10,8 @@ const TextFieldComponent = ({
 }) => {
   const {
     field,
-    fieldState,
-    formState,
+    // fieldState,
+    // formState,
   } = useController({
     name,
     control,
