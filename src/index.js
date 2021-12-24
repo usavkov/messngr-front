@@ -14,7 +14,6 @@ import { AuthProvider } from './utils';
 import App from './App';
 
 import './index.scss';
-import { NavProvider } from './utils/navigation';
 
 const httpLink = createHttpLink({
   uri: process.env.REACT_APP_APOLLO_SERVER_URI,
@@ -41,9 +40,7 @@ ReactDOM.render(
     <ApolloProvider client={client}>
       <AuthProvider>
         <BrowserRouter>
-          <NavProvider>
-            <App />
-          </NavProvider>
+          <App />
         </BrowserRouter>
       </AuthProvider>
     </ApolloProvider>

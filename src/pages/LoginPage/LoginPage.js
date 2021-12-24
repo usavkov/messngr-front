@@ -1,17 +1,25 @@
-import { useForm } from 'react-hook-form';
-import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useLazyQuery } from '@apollo/client';
+import { useForm } from 'react-hook-form';
+import { useHistory, useLocation } from 'react-router-dom';
+
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {
-  Container,
-  Row,
-  Col,
-  Form,
+  Avatar,
+  Box,
   Button,
-} from 'react-bootstrap';
+  Container,
+  Grid,
+  Link,
+  Typography,
+} from '@mui/material';
 
 import { LOGIN } from '../../GraphQL/queries';
+
+import {
+  Checkbox,
+  TextField,
+} from '../../common/components';
 import { ACTION_LOGIN, PAGE_HOME, PAGE_SIGN_UP } from '../../constants';
-import { Input } from '../../components';
 import { useAuth } from '../../utils';
 
 export const LoginPage = () => {
@@ -31,66 +39,89 @@ export const LoginPage = () => {
       })
     }
   })
-  const { register, handleSubmit } = useForm();
+  const { control, handleSubmit } = useForm();
 
   const onSubmit = (variables) => {
-    login({ variables })
+    login({ variables });
   };
 
   return (
-    <Container>
-      <Row className='justify-content-center'>
-        <Col xs={10} md={8} lg={6}>
-          <h1 className='py-5'>Login</h1>
+    <Container
+      component="main"
+      maxWidth="xs"
+      sx={{
+        display: 'flex',
+        minHeight: '100vh'
+      }}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Login
+        </Typography>
+        <Box
+          component="form"
+          onSubmit={handleSubmit(onSubmit)}
+          sx={{ mt: 1 }}
+        >
 
-          <Form onSubmit={handleSubmit(onSubmit)}>
-            <Input
-              id='login'
-              label='Login'
-              placeholder='Login'
-              labelType='floating'
-              className='mb-3'
-              register={register}
-              required
-            />
-            <Input
-              id='password'
-              label='Password'
-              type='password'
-              placeholder='Password'
-              labelType='floating'
-              className='mb-3'
-              register={register}
-              required
-            />
-            <Input
-              id='isRememberMe'
-              type='checkbox'
-              label='Remember me'
-              className='mb-5'
-              register={register}
-              inline
-            />
+          <TextField
+            control={control}
+            name="login"
+            margin="normal"
+            required
+            fullWidth
+            id="login"
+            label="Login"
+            autoFocus
+          />
+          <TextField
+            control={control}
+            name="password"
+            margin="normal"
+            required
+            fullWidth
+            id="password"
+            label="Password"
+          />
+          <Checkbox
+            control={control}
+            name="isRememberMe"
+            label="Remember me"
+          />
 
-            <Button
-              className='mb-4 text-center'
-              variant='primary'
-              type='submit'
-            >
-              Submit
-            </Button>
-          </Form>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Sign In
+          </Button>
 
-          <span className='d-flex justify-content-center'>
-            <small className='mx-2'>
-              Don't have an account? <Link to={PAGE_SIGN_UP} children='Sign up' />
-            </small>
-            <small className='mx-2'>
-              Forgot password? <Link to='#' children='Click here' />
-            </small>
-          </span>
-        </Col>
-      </Row>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item s>
+              <Link href={PAGE_SIGN_UP} variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
     </Container>
   );
 };

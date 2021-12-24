@@ -1,5 +1,4 @@
 import { Switch } from 'react-router-dom';
-import { Navigation } from '../components';
 
 import { DynamicRoute } from '../components/DynamicRoute';
 import {
@@ -16,17 +15,15 @@ import {
   AdminPage,
 } from '../pages';
 import { GuestPage } from '../pages/GuestPage';
-import { useNavigation, useAuth } from '../utils';
+import { useAuth } from '../utils';
 
 import './App.scss';
 
 const App = () => {
   const { user } = useAuth();
-  const { links } = useNavigation();
 
   return (
     <>
-      <Navigation links={links} variant="tabs" />
       <Switch>
         <DynamicRoute
           exact
