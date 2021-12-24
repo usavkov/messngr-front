@@ -1,5 +1,5 @@
 module.exports = {
   client: {
-    service: 'Messngr@current',
+    service: 'messngr-iwl52p',
   },
 };
