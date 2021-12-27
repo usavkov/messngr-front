@@ -1,0 +1,1 @@
+export { DialogsListItem } from './DialogsListItem';

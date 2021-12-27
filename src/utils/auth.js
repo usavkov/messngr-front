@@ -18,7 +18,7 @@ if (localStorage.token) {
 const authReducer = (state, action ) => {
   switch(action.type) {
     case ACTION_LOGIN:
-      localStorage.setItem('token', action.payload?.login?.token)
+      localStorage.setItem('token', action.payload?.token)
       return { ...state, user: action.payload }
     case ACTION_LOGOUT:
       localStorage.removeItem('token')

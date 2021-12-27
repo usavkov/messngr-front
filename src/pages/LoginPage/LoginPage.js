@@ -1,13 +1,14 @@
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {
   Avatar,
   Box,
   Button,
+  CircularProgress,
   Container,
   Grid,
-  Link,
   Typography,
 } from '@mui/material';
 
@@ -17,11 +18,12 @@ import {
 } from '../../common/components';
 import { useLogin } from '../../common/hooks';
 import { PAGE_SIGN_UP } from '../../constants';
+import { green } from '@mui/material/colors';
 
 export const LoginPage = () => {
   const { control, handleSubmit } = useForm();
 
-  const login = useLogin();
+  const { login, isLoading,  } = useLogin();
 
   const onSubmit = (variables) => login({ variables });
 
@@ -83,20 +85,38 @@ export const LoginPage = () => {
             type="submit"
             fullWidth
             variant="contained"
+            disabled={isLoading}
             sx={{ mt: 3, mb: 2 }}
           >
             Sign In
+            {isLoading && (
+              <CircularProgress
+                size={24}
+                sx={{
+                  color: green[500],
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  marginTop: '-12px',
+                  marginLeft: '-12px',
+                }}
+              />
+            )}
           </Button>
 
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link
+                to="#"
+              >
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href={PAGE_SIGN_UP} variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link
+                to={PAGE_SIGN_UP}
+              >
+                Don't have an account? Sign Up
               </Link>
             </Grid>
           </Grid>

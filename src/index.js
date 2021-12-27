@@ -1,6 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,12 +5,18 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { ThemeProvider } from '@mui/system';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { SnackbarProvider } from 'notistack';
 
-import { AuthProvider } from './utils';
+import { AuthProvider, theme } from './utils';
 
 import App from './App';
 
 import './index.scss';
+import { MAX_SNACK } from './constants';
 
 const httpLink = createHttpLink({
   uri: process.env.REACT_APP_APOLLO_SERVER_URI,
@@ -40,7 +43,11 @@ ReactDOM.render(
     <ApolloProvider client={client}>
       <AuthProvider>
         <BrowserRouter>
-          <App />
+          {/* <ThemeProvider theme={theme}> */}
+            <SnackbarProvider maxSnack={MAX_SNACK}>
+              <App />
+            </SnackbarProvider>
+          {/* </ThemeProvider> */}
         </BrowserRouter>
       </AuthProvider>
     </ApolloProvider>
