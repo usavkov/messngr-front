@@ -1,6 +1,6 @@
 import { useRouteMatch, useHistory, useLocation, Link } from 'react-router-dom';
 
-import { ACTION_LOGOUT, PAGE_SETTINGS } from "../../constants";
+import { PAGE_SETTINGS } from "../../constants";
 import { useAuth } from "../../utils";
 import { DynamicRoute, HomePane } from "../../components"
 import { GuestPage } from "../GuestPage";
@@ -9,7 +9,7 @@ import { Button, Container, Grid, Paper } from '@mui/material';
 
 
 export const HomePage = () => {
-  const { user, authDispatch } = useAuth();
+  const { user, logout } = useAuth();
   const history = useHistory();
   const { pathname } = useLocation();
   const { path } = useRouteMatch();
@@ -20,7 +20,7 @@ export const HomePage = () => {
       <Paper>
         <Grid item xs={9}>
           <button onClick={() => {
-            authDispatch({ type: ACTION_LOGOUT });
+            logout();
             history.go(0);
           }}>
             Logout

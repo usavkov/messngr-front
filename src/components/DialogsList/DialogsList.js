@@ -9,9 +9,6 @@ export const DialogsList = () => {
   const { user } = useAuth();
   const { dialogs } = useUserDialogs();
 
-  console.log(dialogs);
-  console.log(user);
-
   return (
     <List disablePadding>
       {dialogs?.map(({ id, interlocutors, messages }) => {

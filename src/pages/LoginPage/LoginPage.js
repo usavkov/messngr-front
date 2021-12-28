@@ -23,7 +23,7 @@ import { green } from '@mui/material/colors';
 export const LoginPage = () => {
   const { control, handleSubmit } = useForm();
 
-  const { login, isLoading,  } = useLogin();
+  const { login, isLoading } = useLogin();
 
   const onSubmit = (variables) => login({ variables });
 

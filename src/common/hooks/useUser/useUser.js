@@ -12,6 +12,9 @@ export const useUser = (userId, {
   const location = useLocation();
 
   const { data, loading, ...rest } = useQuery(GET_USER_BY_ID, {
+    variables: {
+      userId,
+    },
     skip: !Boolean(userId),
     onError(err) {
       onError
@@ -25,7 +28,7 @@ export const useUser = (userId, {
   })
 
   return {
-    user: data?.getUserById,
+    user: data?.getUserById || {},
     isLoading: loading,
     ...rest,
   };

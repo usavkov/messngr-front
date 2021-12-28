@@ -1,38 +1,46 @@
-import { createContext, useReducer, useContext } from 'react';
-import { ACTION_LOGIN, ACTION_LOGOUT } from '../constants';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import jwt from 'jwt-decode';
+
+import { useStorageItem } from '../common/hooks';
 
 const AuthContext = createContext();
 
-let user;
-
-if (localStorage.token) {
-  const decoded = jwt(localStorage.token);
-  const expDate = new Date(decoded.exp * 1000)
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const { item, setItem, removeItem } = useStorageItem('token');
   
-  user = new Date() < expDate ? decoded : null;
-} else {
-  user = null;
-}
+  useEffect(() => {
+    console.log("effect");
+    console.log('item', item);
+    
+    if (item) {
+      const decoded = jwt(item);
+      const expDate = new Date(decoded.exp * 1000)
 
-const authReducer = (state, action ) => {
-  switch(action.type) {
-    case ACTION_LOGIN:
-      localStorage.setItem('token', action.payload?.token)
-      return { ...state, user: action.payload }
-    case ACTION_LOGOUT:
-      localStorage.removeItem('token')
-      return { ...state, user: null }
-    default:
-      throw new Error(`Cannot to recognize ${action.type} action type`)
-  }
-}
+      setUser(new Date() < expDate ? decoded : null);
+    } else {
+      setUser(null)
+    }
+  }, [item]);
+  
+  const login = useCallback(
+    (token) => setItem(token),
+    [setItem],
+  );
 
-export const AuthProvider = ({children}) => {
-  const [state, dispatch] = useReducer(authReducer, user);
+  const logout = useCallback(
+    () => removeItem(),
+    [removeItem],
+  );
 
   return (
-    <AuthContext.Provider value={{ user: state, authDispatch: dispatch }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   )

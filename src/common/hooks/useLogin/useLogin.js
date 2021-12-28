@@ -6,7 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import { LOGIN } from "../../../GraphQL/queries";
 
-import { ACTION_LOGIN, DIALOGS_PATH, PAGE_HOME } from "../../../constants";
+import { DIALOGS_PATH, PAGE_HOME } from "../../../constants";
 import { getGraphQLError, useAuth } from "../../../utils";
 import { IconButton } from "@mui/material";
 
@@ -15,7 +15,7 @@ export const useLogin = ({
   onError,
   ...props
 } = {}) => {
-  const { authDispatch } = useAuth();
+  const auth = useAuth();
   const history = useHistory();
   const location = useLocation();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -49,7 +49,7 @@ export const useLogin = ({
     onCompleted(variables) {
       onCompleted && onCompleted(variables);
 
-      authDispatch({type: ACTION_LOGIN, payload: data?.login});
+      auth.login(data?.login)
 
       history.push({
         pathname: location.state?.backPathname ?? `${PAGE_HOME}${data?.login?.username}${DIALOGS_PATH}`,
