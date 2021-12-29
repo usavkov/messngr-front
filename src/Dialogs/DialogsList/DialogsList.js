@@ -1,10 +1,8 @@
 import { List } from '@mui/material';
-import { useState } from 'react';
 import { useLocation, useRouteMatch } from 'react-router-dom';
 
 import { useAuth, useUserDialogs } from '../../common/hooks'
-
-import { DialogsListItem } from './DialogsListItem';
+import { DialogsListItem } from '../DialogsListItem';
 
 export const DialogsList = () => {
   const { user } = useAuth();
@@ -12,11 +10,7 @@ export const DialogsList = () => {
   const { pathname } = useLocation();
   const { url } = useRouteMatch();
 
-  console.log(url);
-
   const activeDialog = pathname.match(new RegExp(`${url}\/(.+)\/?`))?.[1];
-
-  console.log(activeDialog);
 
   return (
     <List disablePadding>

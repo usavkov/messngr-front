@@ -3,8 +3,9 @@ import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import { useAuth } from '../../common/hooks';
 import { DIALOGS_PATH } from '../../constants';
-import { DialogContent } from '../DialogContent';
 import { DynamicRoute } from '../DynamicRoute';
+
+import { DialogContent } from '../../Dialogs';
 
 export const ContentPane = () => {
   const { logout } = useAuth();

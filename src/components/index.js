@@ -1,7 +1,9 @@
+export { Content } from './Content';
+export { ContentHeader } from './ContentHeader';
 export { ContentPane } from './ContentPane';
 export { DetailsPane } from './DetailsPane';
-export { DialogContent } from './DialogContent';
 export { DynamicRoute } from './DynamicRoute';
+export { Navigation } from './Navigation';
 export { HomePane } from './HomePane';
 export { UsersList } from './Users';
 export { UserHeader } from './UserHeader';

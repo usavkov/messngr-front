@@ -1,4 +1,4 @@
-import { useHistory, useRouteMatch, useParams } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
@@ -9,7 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import { Avatar, AvatarBadge } from '../../../common/components';
+import { Avatar, AvatarBadge } from '../../common/components';
 
 export const DialogsListItem = ({
   id,

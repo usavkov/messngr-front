@@ -1,4 +1,4 @@
-import { useHistory, useRouteMatch, useLocation } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
 import GroupsRoundedIcon from '@mui/icons-material/GroupsRounded';

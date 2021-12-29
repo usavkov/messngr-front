@@ -1,10 +1,8 @@
 import { useParams } from 'react-router-dom';
-import { VariableSizeList } from 'react-window';
-
-import { List, Paper } from '@mui/material';
 
 import { useAuth, useDialogMessages } from '../../common/hooks';
 import { Message } from '../../common/components';
+import { Content } from '../../components'
 
 export const DialogContent = () => {
   const { user } = useAuth();
@@ -13,16 +11,9 @@ export const DialogContent = () => {
 
   if (isLoading) return 'Loading...';
 
-  console.log(messages);
-
   return (
-    <>
-      <Paper>Title</Paper>
-      <VariableSizeList
-        height={500}
-        width={700}
+      <Content
         itemCount={messages.length}
-        itemSize={() => 60}
       >
         {({ index, style }) => (
           <Message
@@ -32,7 +23,6 @@ export const DialogContent = () => {
             {...messages[index]}
           />
         )}
-      </VariableSizeList>
-    </>
+      </Content>
   );
 };

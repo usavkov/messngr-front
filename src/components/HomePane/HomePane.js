@@ -1,15 +1,13 @@
-import { useLocation, useRouteMatch, useParams } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
 
 import { Grid } from "@mui/material";
 
-import { DIALOGS_PATH, PAGE_HOME } from "../../constants";
-import { DynamicRoute } from '../DynamicRoute';
-import { DialogsList, Navigation } from '../DialogsList';
-import { UserHeader } from "../UserHeader";
+import { DIALOGS_PATH } from "../../constants";
+import { DialogsList } from "../../Dialogs";
+import { Navigation, DynamicRoute, UserHeader } from "../index";
 
 
 export const HomePane = () => {
-  const params = useParams();
   const { path } = useRouteMatch();
 
   return (

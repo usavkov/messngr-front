@@ -11,6 +11,11 @@ export const Message = ({
 }) => {
   const isFromCurrentUser = from === currentUserId;
   
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+
+    console.log('context')
+  }
 
   return (
     <ListItem
@@ -18,6 +23,7 @@ export const Message = ({
       sx={{
         justifyContent: isFromCurrentUser ? 'flex-end' : 'flex-start',
       }}
+      onContextMenu={handleContextMenu}
     >
       <Paper
         elevation={0}
