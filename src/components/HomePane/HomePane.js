@@ -10,16 +10,12 @@ import { UserHeader } from "../UserHeader";
 
 export const HomePane = () => {
   const params = useParams();
-  const { pathname } = useLocation();
   const { path } = useRouteMatch();
-
-  console.log(pathname);
-  console.log(params);
-  console.log(path);
 
   return (
     <Grid
       item
+      minWidth={300}
       xs={3}
       sx={{
         position: 'relative',

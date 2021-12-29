@@ -1,4 +1,4 @@
-export { AuthProvider, useAuth } from './auth';
+export { AuthProvider } from './auth';
 export { getGraphQLError } from './getGraphQLError';
 export { getColor } from './getColor';
 export {

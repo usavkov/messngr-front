@@ -1,0 +1,1 @@
+export { ContentPane } from './ContentPane';

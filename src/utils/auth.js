@@ -1,49 +1,58 @@
 import {
   createContext,
   useCallback,
-  useContext,
   useEffect,
   useState,
 } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import jwt from 'jwt-decode';
 
 import { useStorageItem } from '../common/hooks';
+import { DIALOGS_PATH } from '../constants';
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
+
+const getDecoded = (item) => {
+  const decoded = jwt(item);
+  const expDate = new Date(decoded.exp * 1000);
+
+  return new Date() < expDate ? decoded : null;
+};
 
 export const AuthProvider = ({ children }) => {
+  const location = useLocation();
+  const history = useHistory();
+
   const [user, setUser] = useState(null);
   const { item, setItem, removeItem } = useStorageItem('token');
-  
-  useEffect(() => {
-    console.log("effect");
-    console.log('item', item);
-    
-    if (item) {
-      const decoded = jwt(item);
-      const expDate = new Date(decoded.exp * 1000)
 
-      setUser(new Date() < expDate ? decoded : null);
+  useEffect(() => {
+    if (item) {
+      setUser(getDecoded(item));
     } else {
-      setUser(null)
+      setUser(null);
     }
   }, [item]);
-  
+
   const login = useCallback(
-    (token) => setItem(token),
-    [setItem],
+    (token) => {
+      setItem(token);
+
+      history.push({
+        pathname: (
+          location?.state?.backPathname ?? `/user/${getDecoded(token)?.username}${DIALOGS_PATH}`
+        ),
+        search: location?.search,
+      });
+    },
+    [history, location.search, location.state?.backPathname, setItem],
   );
 
-  const logout = useCallback(
-    () => removeItem(),
-    [removeItem],
-  );
+  const logout = useCallback(() => removeItem(), [removeItem]);
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
-  )
-}
-
-export const useAuth = () => useContext(AuthContext);
+  );
+};

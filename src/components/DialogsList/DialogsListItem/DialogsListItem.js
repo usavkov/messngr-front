@@ -1,31 +1,15 @@
-import { head, includes } from "lodash";
+import { useHistory, useRouteMatch, useParams } from 'react-router-dom';
 
-import { Avatar, Badge, ListItem, ListItemAvatar, ListItemText } from "@mui/material";
-import { styled } from '@mui/material/styles';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
-import { getColor } from "../../../utils";
-import { useHistory, useRouteMatch } from "react-router-dom";
-import { DIALOGS_PATH } from "../../../constants";
+import {
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Typography,
+} from '@mui/material';
 
-const StyledBadge = styled(Badge, {
-  shouldForwardProp: (prop) => !includes(['online'], prop),
-})(({ theme, online }) => ({
-  '& .MuiBadge-badge': {
-    backgroundColor: online ? '#44b700' : 'red',
-    color: online ? '#44b700' : 'red',
-    boxShadow: `0 0 0 3px ${theme.palette.background.paper}`,
-    '&::after': {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      borderRadius: '50%',
-      border: '1px solid currentColor',
-      content: '""',
-    },
-  },
-}));
+import { Avatar, AvatarBadge } from '../../../common/components';
 
 export const DialogsListItem = ({
   id,
@@ -34,48 +18,66 @@ export const DialogsListItem = ({
   lastMessage,
   profileImage,
   username,
+  isCurrentUser,
+  activeDialog,
 }) => {
   const history = useHistory();
-  const { path } = useRouteMatch();
+  const { url } = useRouteMatch()
+
+  const getTitle = () => (
+    (firstName && lastMessage) || username
+  );
+
+  const title = isCurrentUser ? 'Saved' : getTitle();
+
+  const isActive = activeDialog === id;
+
+  const previewMessage = (
+    <Typography
+      noWrap
+      sx={{
+        fontSize: 12,
+        color: 'gray'
+      }}
+    >
+      {lastMessage}
+    </Typography>
+  )
 
   return (
     <ListItem
       button
-      // divider
       sx={{
-        backgroundColor: 'white',
+        backgroundColor: isCurrentUser ? '#deffd9' : 'white',
+        ...(isActive ? { backgroundColor: '#f5e9da' } : {}),
         borderRadius: 2,
         margin: '3px',
         width: 'auto',
       }}
-      onClick={() => history.push(`${path}/${id}`)}
+      onClick={() => history.push(`${url}/${id}`)}
     >
       <ListItemAvatar>
-        <StyledBadge
-          overlap="circular"
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-          variant="dot"
-          online={false}
+        <AvatarBadge
+          badgebgcolor={isCurrentUser ? '#deffd9' : null}
+          status={false}
+          hide={isCurrentUser}
         >
           <Avatar
-            alt="Dialog Picture"
+            alt='Dialog Picture'
             src={profileImage}
+            username={username}
             sx={{
-              bgcolor: getColor({ id })
+              bgcolor: isCurrentUser && '#88c9db'
             }}
           >
-            {
-              !profileImage && (
-                head(username).toUpperCase()
-              )
-            }
+            {isCurrentUser ? <BookmarkBorderIcon /> : null}
           </Avatar>
-        </StyledBadge>
+        </AvatarBadge>
       </ListItemAvatar>
       <ListItemText
-        primary={username}
-        secondary={lastMessage}
+        primary={title}
+        secondary={previewMessage}
       />
     </ListItem>
-  )
-}
+  );
+};

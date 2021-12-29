@@ -5,12 +5,12 @@ import { useTheme } from '@mui/material/styles';
 import { styled } from "@mui/system";
 
 const StyledBadge = styled(Badge, {
-  shouldForwardProp: (prop) => !includes(['online'], prop),
-})(({ theme, status }) => ({
+  shouldForwardProp: (prop) => !includes(['status'], prop),
+})(({ theme, status, badgebgcolor }) => ({
   '& .MuiBadge-badge': {
     backgroundColor: status ? '#44b700' : 'red',
     color: status ? '#44b700' : 'red',
-    boxShadow: `0 0 0 3px ${theme.palette.background.paper}`,
+    boxShadow: `0 0 0 3px ${badgebgcolor ?? theme.palette.background.paper}`,
     '&::after': {
       position: 'absolute',
       top: 0,
@@ -28,11 +28,13 @@ const AvatarBadge = ({
   children,
   isLoading,
   status,
+  hide,
   ...props
 }) => {
   const theme = useTheme();
 
-  if (isLoading) return 'Loading...'
+  if (isLoading) return 'Loading...';
+  if (hide) return children;
 
   return (
     <StyledBadge

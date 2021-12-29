@@ -1,5 +1,6 @@
-import { Redirect, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
+import { useAuth } from '../common/hooks';
 import { DynamicRoute } from '../components/DynamicRoute';
 import {
   DIALOGS_PATH,
@@ -16,14 +17,11 @@ import {
   AdminPage,
 } from '../pages';
 import { GuestPage } from '../pages/GuestPage';
-import { useAuth } from '../utils';
 
 import './App.scss';
 
 const App = () => {
   const { user } = useAuth();
-
-  console.log(user);
 
   return (
     <>
@@ -40,7 +38,7 @@ const App = () => {
         {
           user && (
             <DynamicRoute
-              path={`${PAGE_HOME}:username`}
+              path={`/user/:username`}
               component={HomePage}
             />
           )
@@ -62,7 +60,10 @@ const App = () => {
           component={LoginPage}
           guest
         />
-        <DynamicRoute path={PAGE_HOME} component={Page404}/>
+        <Route
+          path='/'
+          render={() => <Redirect to={user ? `${PAGE_HOME}/${user.username}${DIALOGS_PATH}` : PAGE_LOGIN} />}
+        />
       </Switch>
     </>
   )

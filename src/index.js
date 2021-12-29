@@ -41,15 +41,15 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <AuthProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <AuthProvider>
           {/* <ThemeProvider theme={theme}> */}
-            <SnackbarProvider maxSnack={MAX_SNACK}>
-              <App />
-            </SnackbarProvider>
+          <SnackbarProvider maxSnack={MAX_SNACK}>
+            <App />
+          </SnackbarProvider>
           {/* </ThemeProvider> */}
-        </BrowserRouter>
-      </AuthProvider>
+        </AuthProvider>
+      </BrowserRouter>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root'),

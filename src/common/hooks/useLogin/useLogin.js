@@ -1,63 +1,47 @@
-import { useLazyQuery } from "@apollo/client";
-import { useHistory, useLocation } from "react-router-dom";
+import { useLazyQuery } from '@apollo/client';
 import { useSnackbar } from 'notistack';
 
 import CloseIcon from '@mui/icons-material/Close';
+import { IconButton } from '@mui/material';
 
-import { LOGIN } from "../../../GraphQL/queries";
+import { LOGIN } from '../../../GraphQL/queries';
+import { getGraphQLError } from '../../../utils';
+import { useAuth } from '../useAuth';
 
-import { DIALOGS_PATH, PAGE_HOME } from "../../../constants";
-import { getGraphQLError, useAuth } from "../../../utils";
-import { IconButton } from "@mui/material";
-
-export const useLogin = ({
-  onCompleted,
-  onError,
-  ...props
-} = {}) => {
+export const useLogin = ({ onCompleted, onError, ...props } = {}) => {
   const auth = useAuth();
-  const history = useHistory();
-  const location = useLocation();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-  const getErrorAction = key => (
+  const getErrorAction = (key) => (
     <IconButton
-      aria-label="close snackbar"
+      aria-label='close snackbar'
       onClick={() => closeSnackbar(key)}
-      size="small"
+      size='small'
       sx={{
         color: 'white',
       }}
     >
-      <CloseIcon fontSize="small" />
+      <CloseIcon fontSize='small' />
     </IconButton>
   );
 
-  const [login, {data, loading, ...rest }] = useLazyQuery(LOGIN, {
+  const [login, { data, loading, ...rest }] = useLazyQuery(LOGIN, {
     onError(err) {
       onError
         ? onError(err)
-        : enqueueSnackbar(
-          getGraphQLError(err),
-          {
+        : enqueueSnackbar(getGraphQLError(err), {
             variant: 'error',
             preventDuplicate: true,
             action: getErrorAction,
-          },
-        );
+          });
     },
     onCompleted(variables) {
       onCompleted && onCompleted(variables);
 
-      auth.login(data?.login)
-
-      history.push({
-        pathname: location.state?.backPathname ?? `${PAGE_HOME}${data?.login?.username}${DIALOGS_PATH}`,
-        search: location.search,
-      })
+      auth.login(data?.login);
     },
     ...props,
-  })
+  });
 
   return {
     login,

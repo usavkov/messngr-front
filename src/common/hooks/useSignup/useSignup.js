@@ -20,8 +20,6 @@ export const useSignup = ({
     update(_, res) {
       update && update(_, res)
 
-      console.log(res);
-
       history.push({
         pathname: location.state?.backPathname ?? PAGE_HOME,
         search: location.search,

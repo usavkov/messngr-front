@@ -10,10 +10,11 @@ const AvatarComponent = ({
   src,
   username,
   isLoading,
+  sx,
+  children,
+  ...props
 }) => {
   const theme = useTheme();
-
-  console.log(theme);
 
   if (isLoading) return 'Loading...'
 
@@ -22,14 +23,12 @@ const AvatarComponent = ({
       alt="Dialog Picture"
       src={src}
       sx={{
-        bgcolor: getColor({ id })
+        bgcolor: getColor({ id }),
+        ...sx
       }}
+      {...props}
     >
-      {
-        !src && (
-          head(username)?.toUpperCase()
-        )
-      }
+      {children ?? head(username)?.toUpperCase()}
     </Avatar>
   )
 };

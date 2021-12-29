@@ -1,7 +1,7 @@
 import { Route, Redirect } from 'react-router-dom';
-import { PAGE_HOME, PAGE_LOGIN } from '../../constants';
 
-import { useAuth } from '../../utils';
+import { useAuth } from '../../common/hooks';
+import { PAGE_HOME, PAGE_LOGIN } from '../../constants';
 
 export const DynamicRoute = ({
   component,

@@ -1,13 +1,22 @@
 import { List } from '@mui/material';
+import { useState } from 'react';
+import { useLocation, useRouteMatch } from 'react-router-dom';
 
-import { useUserDialogs } from '../../common/hooks'
-import { useAuth } from "../../utils";
+import { useAuth, useUserDialogs } from '../../common/hooks'
 
 import { DialogsListItem } from './DialogsListItem';
 
 export const DialogsList = () => {
   const { user } = useAuth();
   const { dialogs } = useUserDialogs();
+  const { pathname } = useLocation();
+  const { url } = useRouteMatch();
+
+  console.log(url);
+
+  const activeDialog = pathname.match(new RegExp(`${url}\/(.+)\/?`))?.[1];
+
+  console.log(activeDialog);
 
   return (
     <List disablePadding>
@@ -20,16 +29,17 @@ export const DialogsList = () => {
           )
         );
         const lastMessage = messages[0]?.content;
-
-        console.log(interlocutor);
+        const isCurrentUser = user.userId === interlocutor.id;
 
         return (
           lastMessage && (
             <DialogsListItem
+              {...interlocutor}
               key={id}
               id={id}
+              activeDialog={activeDialog}
               lastMessage={lastMessage}
-              {...interlocutor}
+              isCurrentUser={isCurrentUser}
             />
           )
         )
