@@ -1,4 +1,4 @@
-import { Box } from '@mui/system';
+import { useSubscription } from '@apollo/client';
 import {
   AutoSizer,
   CellMeasurer,
@@ -7,19 +7,33 @@ import {
   WindowScroller,
 } from 'react-virtualized';
 
+import { Box } from '@mui/system';
+
+import { MESSAGE_SENT_SUBSCRIPTION } from '../../GraphQL/subscriptions'
+
 export const Content = ({ children, itemCount }) => {
+  const { data } = useSubscription(MESSAGE_SENT_SUBSCRIPTION);
+
   const rowRenderer = ({ key, index, style, ...rest }) => {
-    console.log(rest);
+
     return children({ key, index, style });
   };
 
   return (
     <Box
-      flex="auto"
-      display="flex"
-      flexDirection="column"
+      sx={{
+        flex: 'auto',
+        display: 'flex',
+        flexDirection: 'column-reverse',
+        overflowY: 'scroll',
+      }}
     >
-      <AutoSizer>
+      {children}
+    </Box>
+  );
+};
+
+{/* <AutoSizer>
       {({ height, width }) => (
         <List
           height={height}
@@ -29,7 +43,4 @@ export const Content = ({ children, itemCount }) => {
           width={width}
         />
       )}
-    </AutoSizer>
-    </Box>
-  );
-};
+    </AutoSizer> */}

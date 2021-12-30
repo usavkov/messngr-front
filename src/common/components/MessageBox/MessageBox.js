@@ -10,16 +10,23 @@ export const MessageBox = ({
   sx,
   inputSx,
 }) => {
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, reset } = useForm();
 
   return (
     <Paper
       component='form'
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit(onSubmit)(e);
+        reset({ 
+          content: ''
+        });
+      }}
       sx={{
         display: 'flex',
         mt: '1px',
         borderTop: '1px solid lightgray',
+        height: 'fit-content',
         ...sx,
       }}
     >

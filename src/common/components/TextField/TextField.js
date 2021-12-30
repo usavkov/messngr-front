@@ -1,13 +1,15 @@
-import { TextField } from "@mui/material";
+import React from "react";
 import { useController } from "react-hook-form";
 
-const TextFieldComponent = ({
+import { TextField } from "@mui/material";
+
+const TextFieldComponent = React.forwardRef(({
   control,
   defaultValue = '',
   name,
   rules,
   ...rest
-}) => {
+}, ref) => {
   const {
     field,
     // fieldState,
@@ -21,10 +23,11 @@ const TextFieldComponent = ({
 
   return (
     <TextField
+      ref={ref}
       {...field}
       {...rest}
     />
   )
-};
+});
 
 export default TextFieldComponent;

@@ -1,1 +1,1 @@
-export { MESSAGE_SENT } from './messageSent';
+export { MESSAGE_SENT_SUBSCRIPTION } from './messageSent';

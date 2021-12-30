@@ -17,33 +17,32 @@ export const DialogContent = () => {
   if (isLoading) return 'Loading...';
 
   const handleSend = ({ content }) => {
-    (content && state?.interlocutorId) 
-    && sendMessage({
-      variables: {
-        type: 'DIRECT',
-        content,
-        to: state?.interlocutorId,
-      }
-    })
-  }
+    content &&
+      state?.interlocutorId &&
+      sendMessage({
+        variables: {
+          type: 'DIRECT',
+          content,
+          to: state?.interlocutorId,
+        },
+      });
+  };
 
   return (
     <Box
-      height="100%"
-      display="flex"
-      flexDirection="column"
+      sx={{
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'relative',
+      }}
     >
       <DialogsHeader />
 
       <Content itemCount={messages.length}>
-        {({ key, index, style }) => (
-          <Message
-            key={key}
-            currentUserId={user?.userId}
-            style={style}
-            {...messages[index]}
-          />
-        )}
+        {messages.map((message) => (
+          <Message key={message.id} currentUserId={user?.userId} {...message} />
+        ))}
       </Content>
 
       <MessageBox onSubmit={handleSend} />

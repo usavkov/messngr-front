@@ -13,7 +13,13 @@ export const HomePage = () => {
   const { path } = useRouteMatch();
 
   return (
-    <Grid container>
+    <Grid
+      container
+      sx={{
+        position: 'relative',
+        flexWrap: 'nowrap',
+      }}
+    >
       <HomePane />
       <ContentPane />
       <DetailsPane />
