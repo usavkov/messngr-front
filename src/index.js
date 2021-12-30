@@ -13,32 +13,56 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { SnackbarProvider } from 'notistack';
+import { SubscriptionClient } from 'subscriptions-transport-ws';
 
 import { AuthProvider, theme } from './utils';
+import { MAX_SNACK } from './constants';
 
 import App from './App';
 
 import './index.scss';
-import { MAX_SNACK } from './constants';
 
-const wsLink = new WebSocketLink({
-  uri: process.env.REACT_APP_APOLLO_WS_SERVER_URI,
-  options: {
+const returnJWT = () => {
+  const token = localStorage.getItem('token');
+  return token ? `Bearer ${token}` : null;
+};
+
+const wsClient = new SubscriptionClient(
+  process.env.REACT_APP_APOLLO_WS_SERVER_URI,
+  {
     reconnect: true,
-    connectionParams: {
-      authorization: `Bearer ${localStorage.getItem('token')}`,
-    }
   },
-});
+);
+
+wsClient.use([
+  {
+    applyMiddleware(operationOptions, next) {
+      operationOptions['token'] = returnJWT();
+      next();
+    },
+  },
+]);
+
+const wsLink = new WebSocketLink(wsClient);
 
 const httpLink = new HttpLink({
   uri: process.env.REACT_APP_APOLLO_HTTP_SERVER_URI,
   credentials: 'same-origin',
 });
 
+const authLink = setContext((_, { headers }) => {
+  return {
+    headers: {
+      ...headers,
+      authorization: returnJWT(),
+    },
+  };
+});
+
 const splitLink = split(
   ({ query }) => {
     const definition = getMainDefinition(query);
+
     return (
       definition.kind === 'OperationDefinition' &&
       definition.operation === 'subscription'
@@ -47,16 +71,6 @@ const splitLink = split(
   wsLink,
   httpLink,
 );
-
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('token');
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
-  };
-});
 
 const client = new ApolloClient({
   link: authLink.concat(splitLink),

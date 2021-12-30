@@ -1,3 +1,4 @@
+import { useApolloClient } from '@apollo/client';
 import {
   createContext,
   useCallback,
@@ -22,6 +23,7 @@ const getDecoded = (item) => {
 export const AuthProvider = ({ children }) => {
   const location = useLocation();
   const history = useHistory();
+  const client = useApolloClient();
 
   const [user, setUser] = useState(null);
   const { item, setItem, removeItem } = useStorageItem('token');
@@ -48,7 +50,10 @@ export const AuthProvider = ({ children }) => {
     [history, location.search, location.state?.backPathname, setItem],
   );
 
-  const logout = useCallback(() => removeItem(), [removeItem]);
+  const logout = useCallback(() => {
+    client.clearStore();
+    removeItem();
+  }, [client, removeItem]);
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>

@@ -9,15 +9,11 @@ import {
 
 import { Box } from '@mui/system';
 
-import { MESSAGE_SENT_SUBSCRIPTION } from '../../GraphQL/subscriptions'
-
 export const Content = ({ children, itemCount }) => {
-  const { data } = useSubscription(MESSAGE_SENT_SUBSCRIPTION);
+  // const rowRenderer = ({ key, index, style, ...rest }) => {
 
-  const rowRenderer = ({ key, index, style, ...rest }) => {
-
-    return children({ key, index, style });
-  };
+  //   return children({ key, index, style });
+  // };
 
   return (
     <Box

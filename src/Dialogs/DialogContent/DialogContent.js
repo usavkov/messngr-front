@@ -22,6 +22,7 @@ export const DialogContent = () => {
       sendMessage({
         variables: {
           type: 'DIRECT',
+          dialogId,
           content,
           to: state?.interlocutorId,
         },
@@ -40,8 +41,8 @@ export const DialogContent = () => {
       <DialogsHeader />
 
       <Content itemCount={messages.length}>
-        {messages.map((message) => (
-          <Message key={message.id} currentUserId={user?.userId} {...message} />
+        {messages.map((message, index) => (
+          <Message key={index} currentUserId={user?.userId} {...message} />
         ))}
       </Content>
 

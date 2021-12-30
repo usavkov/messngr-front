@@ -30,8 +30,8 @@ export const Message = ({
         sx={{
           maxWidth: '80%',
           filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.32))',
-          bgcolor: isFromCurrentUser ? 'lightcoral' : '#eee',
-          color: isFromCurrentUser && 'white',
+          bgcolor: isFromCurrentUser ? 'lightcoral' : '#469fbd',
+          color: 'white',
           padding: '8px 16px',
           borderRadius: 6,
           '&:before': {
@@ -42,7 +42,7 @@ export const Message = ({
             [isFromCurrentUser ? 'right' : 'left']: -3,
             width: 10,
             height: 10,
-            bgcolor: isFromCurrentUser ? 'lightcoral' : '#eee',
+            bgcolor: isFromCurrentUser ? 'lightcoral' : '#469fbd',
             transform: 'translateY(-50%) rotate(45deg)',
             zIndex: 0,
           },
