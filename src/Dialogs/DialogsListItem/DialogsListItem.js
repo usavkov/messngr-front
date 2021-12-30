@@ -13,6 +13,8 @@ import { Avatar, AvatarBadge } from '../../common/components';
 
 export const DialogsListItem = ({
   id,
+  dialogId,
+  interlocutorId,
   firstName,
   lastName,
   lastMessage,
@@ -30,7 +32,7 @@ export const DialogsListItem = ({
 
   const title = isCurrentUser ? 'Saved' : getTitle();
 
-  const isActive = activeDialog === id;
+  const isActive = activeDialog === dialogId;
 
   const previewMessage = (
     <Typography
@@ -46,6 +48,7 @@ export const DialogsListItem = ({
 
   return (
     <ListItem
+      id={id}
       button
       sx={{
         backgroundColor: isCurrentUser ? '#deffd9' : 'white',
@@ -54,7 +57,10 @@ export const DialogsListItem = ({
         margin: '3px',
         width: 'auto',
       }}
-      onClick={() => history.push(`${url}/${id}`)}
+      onClick={() => history.push({
+        pathname: `${url}/${dialogId}`,
+        state : { interlocutorId }
+      })}
     >
       <ListItemAvatar>
         <AvatarBadge

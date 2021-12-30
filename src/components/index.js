@@ -1,5 +1,4 @@
 export { Content } from './Content';
-export { ContentHeader } from './ContentHeader';
 export { ContentPane } from './ContentPane';
 export { DetailsPane } from './DetailsPane';
 export { DynamicRoute } from './DynamicRoute';

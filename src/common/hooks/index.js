@@ -1,6 +1,7 @@
 export { useAuth } from './useAuth';
 export { useDialogMessages } from './useDialogMessages';
 export { useLogin } from './useLogin';
+export { useSendMessage } from './useSendMessage';
 export { useNavigation } from './useNavigation';
 export { useSignup } from './useSignup';
 export { useStorageItem } from './useStorageItem';

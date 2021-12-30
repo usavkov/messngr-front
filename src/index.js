@@ -1,10 +1,13 @@
 import {
   ApolloClient,
-  InMemoryCache,
   ApolloProvider,
-  createHttpLink,
+  InMemoryCache,
+  HttpLink,
+  split,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { WebSocketLink } from '@apollo/client/link/ws';
+import { getMainDefinition } from '@apollo/client/utilities';
 import { ThemeProvider } from '@mui/system';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -18,10 +21,32 @@ import App from './App';
 import './index.scss';
 import { MAX_SNACK } from './constants';
 
-const httpLink = createHttpLink({
-  uri: process.env.REACT_APP_APOLLO_SERVER_URI,
+const wsLink = new WebSocketLink({
+  uri: process.env.REACT_APP_APOLLO_WS_SERVER_URI,
+  options: {
+    reconnect: true,
+    connectionParams: {
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+  },
+});
+
+const httpLink = new HttpLink({
+  uri: process.env.REACT_APP_APOLLO_HTTP_SERVER_URI,
   credentials: 'same-origin',
 });
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
+  },
+  wsLink,
+  httpLink,
+);
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('token');
@@ -34,7 +59,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: authLink.concat(splitLink),
   cache: new InMemoryCache(),
 });
 

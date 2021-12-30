@@ -1,0 +1,1 @@
+export { DialogsHeader } from './DialogsHeader';

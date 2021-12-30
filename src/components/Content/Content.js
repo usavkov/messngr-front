@@ -1,19 +1,35 @@
-import { VariableSizeList } from 'react-window';
-
-import { ContentHeader } from '../index';
+import { Box } from '@mui/system';
+import {
+  AutoSizer,
+  CellMeasurer,
+  CellMeasurerCache,
+  List,
+  WindowScroller,
+} from 'react-virtualized';
 
 export const Content = ({ children, itemCount }) => {
+  const rowRenderer = ({ key, index, style, ...rest }) => {
+    console.log(rest);
+    return children({ key, index, style });
+  };
+
   return (
-    <>
-      <ContentHeader />
-      <VariableSizeList
-        height={500}
-        width={700}
-        itemCount={itemCount}
-        itemSize={() => 60}
-      >
-        {({ index, style }) => children({ index, style })}
-      </VariableSizeList>
-    </>
+    <Box
+      flex="auto"
+      display="flex"
+      flexDirection="column"
+    >
+      <AutoSizer>
+      {({ height, width }) => (
+        <List
+          height={height}
+          rowCount={itemCount}
+          rowHeight={60} // TODO: adjust
+          rowRenderer={rowRenderer}
+          width={width}
+        />
+      )}
+    </AutoSizer>
+    </Box>
   );
 };

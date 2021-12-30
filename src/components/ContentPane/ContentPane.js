@@ -17,6 +17,8 @@ export const ContentPane = () => {
       item
       sx={{
         flex: 'auto',
+        height: '100vh',
+        position: 'relative',
       }}
     >
       <DynamicRoute
