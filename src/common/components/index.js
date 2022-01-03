@@ -3,4 +3,5 @@ export { AvatarBadge } from './AvatarBadge';
 export { Checkbox } from './Checkbox';
 export { Message } from './Message';
 export { MessageBox } from './MessageBox';
+export { SearchInput } from './SearchInput';
 export { TextField } from './TextField';

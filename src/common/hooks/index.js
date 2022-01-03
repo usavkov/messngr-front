@@ -8,3 +8,4 @@ export { useStorageItem } from './useStorageItem';
 export { useToggle } from './useToggle';
 export { useUser } from './useUser';
 export { useUserDialogs } from './useUserDialogs';
+export { useUsersSearch } from './useUsersSearch';

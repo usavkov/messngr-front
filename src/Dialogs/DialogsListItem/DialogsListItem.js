@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 
 import { Avatar, AvatarBadge } from '../../common/components';
+import { getUserTitle } from '../../utils';
 
 export const DialogsListItem = ({
   id,
@@ -26,11 +27,11 @@ export const DialogsListItem = ({
   const history = useHistory();
   const { url } = useRouteMatch()
 
-  const getTitle = () => (
-    (firstName && lastMessage) || username
-  );
-
-  const title = isCurrentUser ? 'Saved' : getTitle();
+  const title = isCurrentUser ? 'Saved' : getUserTitle({
+    firstName,
+    lastName,
+    username,
+  });
 
   const isActive = activeDialog === dialogId;
 
@@ -64,7 +65,7 @@ export const DialogsListItem = ({
     >
       <ListItemAvatar>
         <AvatarBadge
-          badgebgcolor={isCurrentUser ? '#deffd9' : null}
+          badgebgcolor={isActive ? '#f5e9da' : (isCurrentUser ? '#deffd9' : null)}
           status={false}
           hide={isCurrentUser}
         >

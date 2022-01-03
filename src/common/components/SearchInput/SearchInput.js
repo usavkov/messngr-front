@@ -1,0 +1,71 @@
+import { useEffect, useMemo, useState } from 'react';
+import { noop, throttle } from 'lodash';
+
+import { Autocomplete, TextField } from '@mui/material';
+
+export const SearchInput = ({
+  id = 'search-input',
+  label,
+  searchFn = noop,
+  options = [],
+  renderInput,
+  renderOption,
+  isLoading,
+  onChange,
+  ...rest
+}) => {
+  const [value, setValue] = useState(null);
+  const [inputValue, setInputValue] = useState('');
+
+  const fetch = useMemo(
+    () =>
+      throttle((request, callback) => {
+        searchFn({
+          variables: { search: inputValue },
+        });
+      }, 400),
+    [searchFn, inputValue],
+  );
+
+  useEffect(() => {
+    fetch();
+  }, [value, inputValue, fetch]);
+
+  return (
+    <Autocomplete
+      id={id}
+      filterOptions={(x) => x}
+      options={options}
+      autoComplete
+      includeInputInList
+      filterSelectedOptions
+      value={value}
+      loading={isLoading}
+      isOptionEqualToValue={(option, value) => option.username = value}
+      onChange={(_event, newValue) => {
+        setValue(newValue);
+        onChange && onChange(newValue);
+      }}
+      onInputChange={(_event, newInputValue) => {
+        setInputValue(newInputValue);
+      }}
+      renderInput={
+        renderInput ??
+        ((params) => (
+          <TextField
+            {...params}
+            label={label ?? 'Search'}
+            fullWidth
+          />
+        ))
+      }
+      renderOption={
+        renderOption ??
+        ((props, option) => {
+          return <li {...props}>{option?.label}</li>;
+        })
+      }
+      {...rest}
+    />
+  );
+};
