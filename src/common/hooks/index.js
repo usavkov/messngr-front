@@ -1,4 +1,6 @@
 export { useAuth } from './useAuth';
+export { useContextMenu } from './useContextMenu';
+export { useDeleteMessage } from './useDeleteMessage';
 export { useDialogMessages } from './useDialogMessages';
 export { useLogin } from './useLogin';
 export { useSendMessage } from './useSendMessage';

@@ -5,6 +5,7 @@ export const GET_DIALOG_MESSAGES = gql`
     $dialogId: ID!
   ) {
     getMessagesByDialogId(dialogId: $dialogId) {
+      id
       createdAt
       updatedAt
       from

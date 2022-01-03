@@ -1,21 +1,12 @@
-import {
-  ListItem,
-  Paper,
-} from '@mui/material';
+import { ListItem, Paper } from '@mui/material';
 
-export const Message = ({
-  content,
-  currentUserId,
-  from,
-  to,
-}) => {
+import { MessageContextMenu } from '../../../components';
+import { useContextMenu } from '../../hooks';
+
+export const Message = ({ content, currentUserId, from, to, id }) => {
+  const { anchorPosition, closeMenu, onContextMenu, isOpen } = useContextMenu();
+
   const isFromCurrentUser = from === currentUserId;
-  
-  const handleContextMenu = (e) => {
-    // e.preventDefault();
-
-    console.log('context')
-  }
 
   return (
     <ListItem
@@ -23,8 +14,15 @@ export const Message = ({
       sx={{
         justifyContent: isFromCurrentUser ? 'flex-end' : 'flex-start',
       }}
-      onContextMenu={handleContextMenu}
+      onContextMenu={onContextMenu}
     >
+      <MessageContextMenu
+        messageId={id}
+        anchorPosition={anchorPosition}
+        onClose={closeMenu}
+        isFromCurrentUser={isFromCurrentUser}
+        isOpen={isOpen}
+      />
       <Paper
         elevation={0}
         sx={{
@@ -51,5 +49,5 @@ export const Message = ({
         {content}
       </Paper>
     </ListItem>
-  )
+  );
 };

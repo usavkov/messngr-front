@@ -1,0 +1,1 @@
+export { useDeleteMessage } from './useDeleteMessage';

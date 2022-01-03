@@ -15,23 +15,27 @@ import { getUserTitle } from '../../utils';
 export const DialogsListItem = ({
   id,
   dialogId,
-  interlocutorId,
-  firstName,
-  lastName,
+  interlocutor: {
+    firstName,
+    lastName,
+    username,
+    profileImage,
+    id: interlocutorId,
+  },
   lastMessage,
-  profileImage,
-  username,
   isCurrentUser,
   activeDialog,
 }) => {
   const history = useHistory();
-  const { url } = useRouteMatch()
+  const { url } = useRouteMatch();
 
-  const title = isCurrentUser ? 'Saved' : getUserTitle({
-    firstName,
-    lastName,
-    username,
-  });
+  const title = isCurrentUser
+    ? 'Saved'
+    : getUserTitle({
+        firstName,
+        lastName,
+        username,
+      });
 
   const isActive = activeDialog === dialogId;
 
@@ -40,12 +44,12 @@ export const DialogsListItem = ({
       noWrap
       sx={{
         fontSize: 12,
-        color: 'gray'
+        color: 'gray',
       }}
     >
-      {lastMessage}
+      {lastMessage?.content}
     </Typography>
-  )
+  );
 
   return (
     <ListItem
@@ -58,14 +62,16 @@ export const DialogsListItem = ({
         margin: '3px',
         width: 'auto',
       }}
-      onClick={() => history.push({
-        pathname: `${url}/${dialogId}`,
-        state : { interlocutorId }
-      })}
+      onClick={() =>
+        history.push({
+          pathname: `${url}/${dialogId}`,
+          state: { interlocutorId },
+        })
+      }
     >
       <ListItemAvatar>
         <AvatarBadge
-          badgebgcolor={isActive ? '#f5e9da' : (isCurrentUser ? '#deffd9' : null)}
+          badgebgcolor={isActive ? '#f5e9da' : isCurrentUser ? '#deffd9' : null}
           status={false}
           hide={isCurrentUser}
         >
@@ -74,17 +80,14 @@ export const DialogsListItem = ({
             src={profileImage}
             username={username}
             sx={{
-              bgcolor: isCurrentUser && '#88c9db'
+              bgcolor: isCurrentUser && '#88c9db',
             }}
           >
             {isCurrentUser ? <BookmarkBorderIcon /> : null}
           </Avatar>
         </AvatarBadge>
       </ListItemAvatar>
-      <ListItemText
-        primary={title}
-        secondary={previewMessage}
-      />
+      <ListItemText primary={title} secondary={previewMessage} />
     </ListItem>
   );
 };
