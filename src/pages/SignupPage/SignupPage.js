@@ -33,7 +33,7 @@ export const SignupPage = () => {
   };
 
   return (
-    <Grid container component='main' sx={{ height: '100vh' }}>
+    <Grid container component="main" sx={{ height: '100vh' }}>
       <Grid
         item
         xs={false}
@@ -60,11 +60,11 @@ export const SignupPage = () => {
             alignItems: 'center',
           }}
         >
-          <Typography component='h1' variant='h5'>
+          <Typography component="h1" variant="h5">
             Sign up
           </Typography>
           <Box
-            component='form'
+            component="form"
             onSubmit={handleSubmit(onSubmit)}
             sx={{ mt: 3 }}
           >
@@ -72,12 +72,12 @@ export const SignupPage = () => {
               <Grid item xs={12} sm={6}>
                 <TextField
                   control={control}
-                  autoComplete='given-name'
-                  name='firstName'
+                  autoComplete="given-name"
+                  name="firstName"
                   required
                   fullWidth
-                  id='firstName'
-                  label='First Name'
+                  id="firstName"
+                  label="First Name"
                   autoFocus
                 />
               </Grid>
@@ -86,10 +86,10 @@ export const SignupPage = () => {
                   control={control}
                   required
                   fullWidth
-                  id='lastName'
-                  label='Last Name'
-                  name='lastName'
-                  autoComplete='family-name'
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="family-name"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -97,10 +97,10 @@ export const SignupPage = () => {
                   control={control}
                   required
                   fullWidth
-                  id='username'
-                  label='Username'
-                  name='username'
-                  autoComplete='username'
+                  id="username"
+                  label="Username"
+                  name="username"
+                  autoComplete="username"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -108,11 +108,11 @@ export const SignupPage = () => {
                   control={control}
                   required
                   fullWidth
-                  id='email'
-                  label='Email Address'
-                  name='email'
-                  type='email'
-                  autoComplete='email'
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -120,11 +120,11 @@ export const SignupPage = () => {
                   control={control}
                   required
                   fullWidth
-                  name='password'
-                  label='Password'
-                  type='password'
-                  id='password'
-                  autoComplete='new-password'
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -132,34 +132,35 @@ export const SignupPage = () => {
                   control={control}
                   required
                   fullWidth
-                  name='confirmPassword'
-                  label='Confirm password'
-                  type='password'
-                  id='confirm-password'
+                  name="confirmPassword"
+                  label="Confirm password"
+                  type="password"
+                  id="confirm-password"
                 />
               </Grid>
               <Grid item xs={12}>
                 <Checkbox
                   control={control}
-                  size='small'
-                  name='acceptPolicy'
+                  size="small"
+                  name="acceptPolicy"
                   label={
-                    <Typography variant="caption" >
-                      I have read and accept the <Link to="">Privacy Statement</Link>
+                    <Typography variant="caption">
+                      I have read and accept the{' '}
+                      <Link to="">Privacy Statement</Link>
                     </Typography>
                   }
                 />
               </Grid>
             </Grid>
             <Button
-              type='submit'
+              type="submit"
               fullWidth
-              variant='contained'
+              variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
               Sign Up
             </Button>
-            <Grid container justifyContent='flex-end'>
+            <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link to={PAGE_LOGIN}>Already have an account? Sign in</Link>
               </Grid>
