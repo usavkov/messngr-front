@@ -5,6 +5,7 @@ const CheckboxComponent = ({
   control,
   defaultValue = false,
   label = '',
+  labelProps = {},
   name,
   rules,
   ...rest
@@ -23,6 +24,7 @@ const CheckboxComponent = ({
   return (
     <FormControlLabel
       label={label}
+      {...labelProps}
       control={
         <Checkbox
           checked={value}
