@@ -76,7 +76,7 @@ export const DialogsListItem = ({
           hide={isCurrentUser}
         >
           <Avatar
-            alt='Dialog Picture'
+            alt="Dialog Picture"
             src={profileImage}
             username={username}
             sx={{

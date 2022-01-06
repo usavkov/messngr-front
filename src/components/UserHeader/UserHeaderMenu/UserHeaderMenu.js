@@ -54,7 +54,7 @@ export const UserHeaderMenu = ({ open, anchorEl, onClose }) => {
       <Divider />
       <MenuItem>
         <ListItemIcon>
-          <Settings fontSize='small' />
+          <Settings fontSize="small" />
         </ListItemIcon>
         Settings
       </MenuItem>
@@ -62,7 +62,7 @@ export const UserHeaderMenu = ({ open, anchorEl, onClose }) => {
         onClick={logout}
       >
         <ListItemIcon>
-          <Logout fontSize='small' />
+          <Logout fontSize="small" />
         </ListItemIcon>
         Logout
       </MenuItem>

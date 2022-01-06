@@ -28,7 +28,7 @@ const App = () => {
       <Switch>
         <DynamicRoute
           exact
-          path='/'
+          path="/"
           render={() => (
             user
               ? <Redirect to={`${PAGE_HOME}${user.username}${DIALOGS_PATH}`} />
@@ -61,7 +61,7 @@ const App = () => {
           guest
         />
         <Route
-          path='/'
+          path="/"
           render={() => <Redirect to={user ? `${PAGE_HOME}/${user.username}${DIALOGS_PATH}` : PAGE_LOGIN} />}
         />
       </Switch>

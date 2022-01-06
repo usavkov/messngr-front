@@ -15,7 +15,7 @@ export const MessageContextMenu = ({
     <Menu
       open={isOpen}
       onClose={onClose}
-      anchorReference='anchorPosition'
+      anchorReference="anchorPosition"
       anchorPosition={anchorPosition}
     >
       <MenuItem onClick={onClose}>Copy</MenuItem>

@@ -14,14 +14,14 @@ export const useLogin = ({ onCompleted, onError, ...props } = {}) => {
 
   const getErrorAction = (key) => (
     <IconButton
-      aria-label='close snackbar'
+      aria-label="close snackbar"
       onClick={() => closeSnackbar(key)}
-      size='small'
+      size="small"
       sx={{
         color: 'white',
       }}
     >
-      <CloseIcon fontSize='small' />
+      <CloseIcon fontSize="small" />
     </IconButton>
   );
 

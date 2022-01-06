@@ -37,7 +37,7 @@ export const ContactsListItem = ({
     >
       <ListItemAvatar>
           <Avatar
-            alt='Dialog Picture'
+            alt="Dialog Picture"
             src={profileImage}
             username={username}
           />

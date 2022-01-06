@@ -10,7 +10,7 @@ export const Message = ({ content, currentUserId, from, to, id }) => {
 
   return (
     <ListItem
-      alignItems='flex-start'
+      alignItems="flex-start"
       sx={{
         justifyContent: isFromCurrentUser ? 'flex-end' : 'flex-start',
       }}

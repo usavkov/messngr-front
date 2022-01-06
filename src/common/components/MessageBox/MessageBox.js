@@ -27,7 +27,7 @@ export const MessageBox = ({ onSubmit, sx, inputSx }) => {
   return (
     <HotKeys keyMap={keyMap} handlers={hotKeysHandlers}>
       <Paper
-        component='form'
+        component="form"
         onSubmit={onSendMessage}
         sx={{
           display: 'flex',
@@ -39,9 +39,9 @@ export const MessageBox = ({ onSubmit, sx, inputSx }) => {
       >
         <TextField
           control={control}
-          id='message-box'
-          name='content'
-          label='Message'
+          id="message-box"
+          name="content"
+          label="Message"
           multiline
           required
           sx={{
@@ -52,10 +52,10 @@ export const MessageBox = ({ onSubmit, sx, inputSx }) => {
           }}
         />
         <IconButton
-          type='submit'
-          color='primary'
-          aria-label='send message'
-          size='large'
+          type="submit"
+          color="primary"
+          aria-label="send message"
+          size="large"
           sx={{
             m: 'auto',
             mr: 2,

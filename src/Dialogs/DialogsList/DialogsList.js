@@ -41,7 +41,7 @@ export const DialogsList = () => {
     </List>
   ) : (
     <Typography
-      variant='caption'
+      variant="caption"
       sx={{
         display: 'flex',
         justifyContent: 'center',

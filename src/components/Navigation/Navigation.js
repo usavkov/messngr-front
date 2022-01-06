@@ -25,18 +25,18 @@ export const Navigation = () => {
         }}
       >
         <BottomNavigationAction
-          label='Dialogs'
-          value='dialogs'
+          label="Dialogs"
+          value="dialogs"
           icon={<PersonOutlineRoundedIcon />}
         />
         <BottomNavigationAction
-          label='Chats'
-          value='chats'
+          label="Chats"
+          value="chats"
           icon={<GroupsRoundedIcon />}
         />
         <BottomNavigationAction
-          label='Contacts'
-          value='contacts'
+          label="Contacts"
+          value="contacts"
           icon={<ImportContactsRoundedIcon />}
         />
       </BottomNavigation>
