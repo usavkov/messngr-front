@@ -1,14 +1,23 @@
 {
   "extends": [
+    "eslint:recommended",
     "react-app",
-    "prettier"
+    "prettier",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime"
+  ],
+  "plugins": [
+    "prettier",
+    "react"
   ],
   "rules": {
-    "jsx-quotes": [
-      1
-    ]
-  },
-  "plugins": [
-    "prettier"
-  ]
+    "prettier/prettier": "error",
+    "react/jsx-max-props-per-line": ["error", {
+      "maximum": {
+        "single": 2,
+        "multi": 1
+      }
+    }],
+    "react/prop-types": 0,
+  }
 }
