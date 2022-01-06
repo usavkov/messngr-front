@@ -42,10 +42,7 @@ export const SignupPage = () => {
         sx={{
           backgroundImage: 'url(https://source.unsplash.com/random)',
           backgroundRepeat: 'no-repeat',
-          backgroundColor: (t) =>
-            t.palette.mode === 'light'
-              ? t.palette.grey[50]
-              : t.palette.grey[900],
+          backgroundColor: (t) => (t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900]),
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -63,106 +60,113 @@ export const SignupPage = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit(onSubmit)}
-            sx={{ mt: 3 }}
-          >
+          <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  control={control}
                   autoComplete="given-name"
-                  name="firstName"
-                  required
+                  autoFocus
+                  control={control}
                   fullWidth
                   id="firstName"
                   label="First Name"
-                  autoFocus
+                  name="firstName"
+                  required
+                  size="small"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  autoComplete="family-name"
                   control={control}
-                  required
                   fullWidth
                   id="lastName"
                   label="Last Name"
                   name="lastName"
-                  autoComplete="family-name"
+                  required
+                  size="small"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  autoComplete="username"
                   control={control}
-                  required
                   fullWidth
                   id="username"
                   label="Username"
                   name="username"
-                  autoComplete="username"
+                  required
+                  size="small"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  autoComplete="email"
                   control={control}
-                  required
                   fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
+                  required
+                  size="small"
                   type="email"
-                  autoComplete="email"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  control={control}
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
                   autoComplete="new-password"
+                  control={control}
+                  fullWidth
+                  id="password"
+                  label="Password"
+                  name="password"
+                  required
+                  size="small"
+                  type="password"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   control={control}
-                  required
                   fullWidth
-                  name="confirmPassword"
-                  label="Confirm password"
-                  type="password"
                   id="confirm-password"
+                  label="Confirm password"
+                  name="confirmPassword"
+                  required
+                  size="small"
+                  type="password"
                 />
               </Grid>
               <Grid item xs={12}>
                 <Checkbox
                   control={control}
-                  size="small"
-                  name="acceptPolicy"
                   label={
                     <Typography variant="caption">
-                      I have read and accept the{' '}
-                      <Link to="">Privacy Statement</Link>
+                      I have read and accept the <Link to="">Privacy Statement</Link>
                     </Typography>
                   }
+                  name="acceptPolicy"
+                  size="small"
                 />
               </Grid>
             </Grid>
             <Button
               type="submit"
+              size="small"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{
+                mt: 3,
+                mb: 2,
+              }}
             >
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to={PAGE_LOGIN}>Already have an account? Sign in</Link>
+                <Typography align="center" variant="caption">
+                  <Link to={PAGE_LOGIN}>Already have an account? Sign in</Link>
+                </Typography>
               </Grid>
             </Grid>
           </Box>
