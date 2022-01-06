@@ -1,12 +1,14 @@
 import { useState } from 'react';
 
 import { Logout, Settings } from '@mui/icons-material';
-import { Divider, ListItemIcon, Menu, MenuItem } from '@mui/material';
+import {
+  Divider, ListItemIcon, Menu, MenuItem,
+} from '@mui/material';
 
 import { Avatar } from '../../../common/components';
 import { useAuth } from '../../../common/hooks';
 
-export const UserHeaderMenu = ({ open, anchorEl, onClose }) => {
+export function UserHeaderMenu({ open, anchorEl, onClose }) {
   const { logout } = useAuth();
 
   return (
@@ -19,7 +21,7 @@ export const UserHeaderMenu = ({ open, anchorEl, onClose }) => {
         sx: {
           overflow: 'visible',
           filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-          mt: .5,
+          mt: 0.5,
           '& .MuiAvatar-root': {
             width: 18,
             height: 18,
@@ -68,4 +70,4 @@ export const UserHeaderMenu = ({ open, anchorEl, onClose }) => {
       </MenuItem>
     </Menu>
   );
-};
+}

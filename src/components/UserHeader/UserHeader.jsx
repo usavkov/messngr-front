@@ -6,10 +6,10 @@ import { Avatar, AvatarBadge } from '../../common/components';
 import { useAuth, useToggle, useUser } from '../../common/hooks';
 import { UserHeaderMenu } from './UserHeaderMenu';
 
-export const UserHeader = () => {
+export function UserHeader() {
   const auth = useAuth();
   const { user, isLoading } = useUser(auth?.user?.userId);
-  const [isMenuOpen, toggleMenu] = useToggle(); 
+  const [isMenuOpen, toggleMenu] = useToggle();
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -55,4 +55,4 @@ export const UserHeader = () => {
       />
     </Box>
   );
-};
+}

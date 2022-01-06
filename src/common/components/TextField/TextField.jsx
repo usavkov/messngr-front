@@ -1,7 +1,7 @@
-import React from "react";
-import { useController } from "react-hook-form";
+import React from 'react';
+import { useController } from 'react-hook-form';
 
-import { TextField } from "@mui/material";
+import { TextField } from '@mui/material';
 
 const TextFieldComponent = React.forwardRef(({
   control,
@@ -27,7 +27,7 @@ const TextFieldComponent = React.forwardRef(({
       {...field}
       {...rest}
     />
-  )
+  );
 });
 
 export default TextFieldComponent;

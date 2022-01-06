@@ -1,6 +1,6 @@
-import { useMutation } from "@apollo/client";
+import { useMutation } from '@apollo/client';
 
-import { SIGN_UP } from "../../../GraphQL/mutations";
+import { SIGN_UP } from '../../../GraphQL/mutations';
 
 export const useSignup = ({
   onError,
@@ -19,5 +19,5 @@ export const useSignup = ({
     data,
     isLoading: loading,
     ...rest,
-  }
+  };
 };

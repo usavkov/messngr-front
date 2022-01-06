@@ -7,7 +7,7 @@ import { Message, MessageBox } from '../../common/components';
 import { Content } from '../../components';
 import { DialogsHeader } from '../DialogsHeader';
 
-export const DialogContent = () => {
+export function DialogContent() {
   const { user } = useAuth();
   const { dialogId } = useParams();
   const { state } = useLocation();
@@ -17,9 +17,9 @@ export const DialogContent = () => {
   if (isLoading) return 'Loading...';
 
   const handleSend = ({ content }) => {
-    content &&
-      state?.interlocutorId &&
-      sendMessage({
+    content
+      && state?.interlocutorId
+      && sendMessage({
         variables: {
           type: 'DIRECT',
           dialogId,
@@ -49,4 +49,4 @@ export const DialogContent = () => {
       <MessageBox onSubmit={handleSend} />
     </Box>
   );
-};
+}

@@ -1,6 +1,6 @@
-import { useMutation } from "@apollo/client";
+import { useMutation } from '@apollo/client';
 
-import { DELETE_MESSAGE } from "../../../GraphQL/mutations";
+import { DELETE_MESSAGE } from '../../../GraphQL/mutations';
 
 export const useDeleteMessage = (messageId, {
   onError,
@@ -10,7 +10,7 @@ export const useDeleteMessage = (messageId, {
     variables: {
       messageId,
     },
-    skip: !Boolean(messageId),
+    skip: !messageId,
     onError(err) {
       onError ? onError(err) : console.dir(err);
     },
@@ -22,5 +22,5 @@ export const useDeleteMessage = (messageId, {
     message: data?.sendMessage,
     isLoading: loading,
     ...rest,
-  }
+  };
 };

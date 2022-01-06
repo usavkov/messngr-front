@@ -9,7 +9,7 @@ import {
 
 import { Box } from '@mui/system';
 
-export const Content = ({ children, itemCount }) => {
+export function Content({ children, itemCount }) {
   // const rowRenderer = ({ key, index, style, ...rest }) => {
 
   //   return children({ key, index, style });
@@ -27,9 +27,9 @@ export const Content = ({ children, itemCount }) => {
       {children}
     </Box>
   );
-};
+}
 
-{/* <AutoSizer>
+{ /* <AutoSizer>
       {({ height, width }) => (
         <List
           height={height}
@@ -39,4 +39,4 @@ export const Content = ({ children, itemCount }) => {
           width={width}
         />
       )}
-    </AutoSizer> */}
+    </AutoSizer> */ }

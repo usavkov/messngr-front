@@ -1,8 +1,9 @@
-import { useApolloClient } from '@apollo/client';
+import React, { useApolloClient } from '@apollo/client';
 import {
   createContext,
   useCallback,
   useEffect,
+  useMemo,
   useState,
 } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -20,7 +21,7 @@ const getDecoded = (item) => {
   return new Date() < expDate ? decoded : null;
 };
 
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const location = useLocation();
   const history = useHistory();
   const client = useApolloClient();
@@ -55,9 +56,11 @@ export const AuthProvider = ({ children }) => {
     removeItem();
   }, [client, removeItem]);
 
+  const value = useMemo(() => ({ user, login, logout }), [user, login, logout]);
+
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );
-};
+}

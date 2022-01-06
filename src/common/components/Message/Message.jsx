@@ -3,8 +3,12 @@ import { ListItem, Paper } from '@mui/material';
 import { MessageContextMenu } from '../../../components';
 import { useContextMenu } from '../../hooks';
 
-export const Message = ({ content, currentUserId, from, to, id }) => {
-  const { anchorPosition, closeMenu, onContextMenu, isOpen } = useContextMenu();
+export function Message({
+  content, currentUserId, from, to, id,
+}) {
+  const {
+    anchorPosition, closeMenu, onContextMenu, isOpen,
+  } = useContextMenu();
 
   const isFromCurrentUser = from === currentUserId;
 
@@ -50,4 +54,4 @@ export const Message = ({ content, currentUserId, from, to, id }) => {
       </Paper>
     </ListItem>
   );
-};
+}

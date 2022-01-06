@@ -5,7 +5,7 @@ import GroupsRoundedIcon from '@mui/icons-material/GroupsRounded';
 import ImportContactsRoundedIcon from '@mui/icons-material/ImportContactsRounded';
 import PersonOutlineRoundedIcon from '@mui/icons-material/PersonOutlineRounded';
 
-export const Navigation = () => {
+export function Navigation() {
   const history = useHistory();
   const { url } = useRouteMatch();
 
@@ -42,4 +42,4 @@ export const Navigation = () => {
       </BottomNavigation>
     </Paper>
   );
-};
+}

@@ -3,7 +3,7 @@ import { noop, throttle } from 'lodash';
 
 import { Autocomplete, TextField } from '@mui/material';
 
-export const SearchInput = ({
+export function SearchInput({
   id = 'search-input',
   label,
   searchFn = noop,
@@ -13,7 +13,7 @@ export const SearchInput = ({
   isLoading,
   onChange,
   ...rest
-}) => {
+}) {
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState('');
 
@@ -50,8 +50,8 @@ export const SearchInput = ({
         setInputValue(newInputValue);
       }}
       renderInput={
-        renderInput ??
-        ((params) => (
+        renderInput
+        ?? ((params) => (
           <TextField
             {...params}
             label={label ?? 'Search'}
@@ -60,12 +60,10 @@ export const SearchInput = ({
         ))
       }
       renderOption={
-        renderOption ??
-        ((props, option) => {
-          return <li {...props}>{option?.label}</li>;
-        })
+        renderOption
+        ?? ((props, option) => <li {...props}>{option?.label}</li>)
       }
       {...rest}
     />
   );
-};
+}

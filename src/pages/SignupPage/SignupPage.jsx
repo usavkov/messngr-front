@@ -2,7 +2,9 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { Avatar, Box, Button, Grid, Paper, Typography } from '@mui/material';
+import {
+  Avatar, Box, Button, Grid, Paper, Typography,
+} from '@mui/material';
 
 import { PAGE_LOGIN } from '../../constants';
 import { Checkbox, TextField } from '../../common/components';
@@ -10,7 +12,7 @@ import { useLogin, useSignup } from '../../common/hooks';
 
 import './SignupPage.scss';
 
-export const SignupPage = () => {
+export function SignupPage() {
   const {
     control,
     formState: { isValid },
@@ -22,8 +24,8 @@ export const SignupPage = () => {
 
   const onSubmit = (variables) => {
     signup({ variables }).then(({ errors }) => {
-      !errors &&
-        login({
+      !errors
+        && login({
           variables: {
             login: variables.username,
             password: variables.password,
@@ -140,11 +142,13 @@ export const SignupPage = () => {
               <Grid item xs={12}>
                 <Checkbox
                   control={control}
-                  label={
+                  label={(
                     <Typography variant="caption">
-                      I have read and accept the <Link to="">Privacy Statement</Link>
+                      I have read and accept the
+                      {' '}
+                      <Link to="">Privacy Statement</Link>
                     </Typography>
-                  }
+                  )}
                   name="acceptPolicy"
                   size="small"
                 />
@@ -174,4 +178,4 @@ export const SignupPage = () => {
       </Grid>
     </Grid>
   );
-};
+}

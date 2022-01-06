@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client';
-import { useHistory, useLocation } from 'react-router-dom';
 
 import { GET_USER_BY_ID } from '../../../GraphQL/queries';
 
@@ -8,7 +7,7 @@ export const useUser = (userId, { onCompleted, onError, ...props } = {}) => {
     variables: {
       userId,
     },
-    skip: !Boolean(userId),
+    skip: !userId,
     onError(err) {
       onError ? onError(err) : console.log(err);
     },

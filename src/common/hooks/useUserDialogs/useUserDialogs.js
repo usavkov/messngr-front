@@ -9,7 +9,9 @@ import {
 } from '../../../GraphQL/subscriptions';
 
 export const useUserDialogs = ({ onCompleted, onError, ...props } = {}) => {
-  const { data, loading, subscribeToMore, ...rest } = useQuery(
+  const {
+    data, loading, subscribeToMore, ...rest
+  } = useQuery(
     GET_USER_DIALOGS,
     {
       onError(err) {
@@ -40,14 +42,15 @@ export const useUserDialogs = ({ onCompleted, onError, ...props } = {}) => {
             messages: [newMessage, ...(dialog?.messages || [])],
           };
 
-          return Object.assign({}, prev, {
+          return {
+            ...prev,
             getUserDialogs: [
               updatedDialog,
               ...prev.getUserDialogs.filter(
                 ({ id }) => id !== updatedDialog.id,
               ),
             ],
-          });
+          };
         },
       }),
 

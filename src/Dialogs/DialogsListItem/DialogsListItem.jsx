@@ -12,7 +12,7 @@ import {
 import { Avatar, AvatarBadge } from '../../common/components';
 import { getUserTitle } from '../../utils';
 
-export const DialogsListItem = ({
+export function DialogsListItem({
   id,
   dialogId,
   interlocutor: {
@@ -25,17 +25,17 @@ export const DialogsListItem = ({
   lastMessage,
   isCurrentUser,
   activeDialog,
-}) => {
+}) {
   const history = useHistory();
   const { url } = useRouteMatch();
 
   const title = isCurrentUser
     ? 'Saved'
     : getUserTitle({
-        firstName,
-        lastName,
-        username,
-      });
+      firstName,
+      lastName,
+      username,
+    });
 
   const isActive = activeDialog === dialogId;
 
@@ -66,8 +66,7 @@ export const DialogsListItem = ({
         history.push({
           pathname: `${url}/${dialogId}`,
           state: { interlocutorId },
-        })
-      }
+        })}
     >
       <ListItemAvatar>
         <AvatarBadge
@@ -90,4 +89,4 @@ export const DialogsListItem = ({
       <ListItemText primary={title} secondary={previewMessage} />
     </ListItem>
   );
-};
+}

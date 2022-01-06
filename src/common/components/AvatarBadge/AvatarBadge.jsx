@@ -1,8 +1,8 @@
 import { includes } from 'lodash';
 
-import { Badge } from "@mui/material";
+import { Badge } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { styled } from "@mui/system";
+import { styled } from '@mui/system';
 
 const StyledBadge = styled(Badge, {
   shouldForwardProp: (prop) => !includes(['status'], prop),
@@ -24,13 +24,13 @@ const StyledBadge = styled(Badge, {
   },
 }));
 
-const AvatarBadge = ({
+function AvatarBadge({
   children,
   isLoading,
   status,
   hide,
   ...props
-}) => {
+}) {
   const theme = useTheme();
 
   if (isLoading) return 'Loading...';
@@ -45,9 +45,9 @@ const AvatarBadge = ({
       status={status}
       {...props}
     >
-     {children}
+      {children}
     </StyledBadge>
-  )
-};
+  );
+}
 
 export default AvatarBadge;

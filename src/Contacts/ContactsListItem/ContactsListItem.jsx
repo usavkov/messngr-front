@@ -10,7 +10,7 @@ import {
 import { Avatar } from '../../common/components';
 import { getUserTitle } from '../../utils';
 
-export const ContactsListItem = ({
+export function ContactsListItem({
   id,
   firstName,
   lastName,
@@ -18,7 +18,7 @@ export const ContactsListItem = ({
   profileImage,
   username,
   ...rest
-}) => {
+}) {
   const history = useHistory();
   const { url } = useRouteMatch();
 
@@ -36,11 +36,11 @@ export const ContactsListItem = ({
       {...rest}
     >
       <ListItemAvatar>
-          <Avatar
-            alt="Dialog Picture"
-            src={profileImage}
-            username={username}
-          />
+        <Avatar
+          alt="Dialog Picture"
+          src={profileImage}
+          username={username}
+        />
       </ListItemAvatar>
       <ListItemText
         primary={getUserTitle({
@@ -52,4 +52,4 @@ export const ContactsListItem = ({
       />
     </ListItem>
   );
-};
+}

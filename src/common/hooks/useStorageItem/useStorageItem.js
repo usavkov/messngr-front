@@ -11,31 +11,31 @@ export const useStorageItem = (itemKey) => {
     } catch {
       //
     }
-  }, [itemKey])
+  }, [itemKey]);
 
   const setItem = useCallback((value) => {
     try {
-      localStorage.setItem(itemKey, value)
+      localStorage.setItem(itemKey, value);
 
-      setState(value)
-    } catch  {
+      setState(value);
+    } catch {
       //
     }
-  }, [itemKey])
+  }, [itemKey]);
 
   const removeItem = useCallback(() => {
     try {
-      localStorage.removeItem(itemKey)
+      localStorage.removeItem(itemKey);
 
-      setState(null)
-    } catch  {
+      setState(null);
+    } catch {
       //
     }
-  }, [itemKey])
+  }, [itemKey]);
 
   return {
     item: state,
     setItem,
     removeItem,
-  }
+  };
 };

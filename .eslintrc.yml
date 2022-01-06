@@ -1,0 +1,106 @@
+plugins:
+  - react
+  - testing-library
+extends:
+  - airbnb
+  - plugin:testing-library/react
+parser: babel-eslint
+parserOptions:
+    ecmaFeatures:
+      experimentalObjectRestSpread: true
+      jsx: true
+env:
+    es6: true
+    browser: true
+    node: true
+    jest: true
+settings:
+  react:
+    version: detect
+rules:
+  indent:
+    - 2
+    - 2
+    - SwitchCase: 1
+  semi: 2
+  max-len: 1
+  max-depth:
+    - 1
+    - 2
+  consistent-return: 0
+  prefer-destructuring: 2
+  no-plusplus: 0
+  func-names: 0
+  comma-dangle:
+    - 2
+    - functions: ignore
+      objects: always-multiline
+      arrays: always-multiline
+      imports: always-multiline
+      exports: always-multiline
+  no-underscore-dangle: 0
+  import/prefer-default-export: 0
+  import/no-extraneous-dependencies:
+    - 2
+    - devDependencies:
+      - "./.storybook/**"
+      - "stories/**"
+      - "**/*.spec.js*"
+  arrow-parens:
+    - 0
+    - as-needed
+    - requireForBlockBody: true
+  implicit-arrow-linebreak: 0
+  react/no-deprecated: 2
+  react/prop-types: 1
+  react/jsx-filename-extension: 0
+  react/require-default-props: 0
+  react/forbid-prop-types: 0
+  react/no-children-prop: 0
+  react/jsx-one-expression-per-line:
+    - 2
+    - allow: single-child
+  react/destructuring-assignment: 0
+  react/jsx-indent:
+    - 2
+    - 2
+  react/jsx-indent-props:
+    - 2
+    - 2
+  react/jsx-closing-bracket-location:
+    - 2
+    - selfClosing: tag-aligned
+      nonEmpty: line-aligned
+  react/jsx-fragments:
+    - 2
+    - syntax
+  react/jsx-props-no-spreading: 0
+  react/static-property-placement: 0
+  react/state-in-constructor:
+    - 2
+    - never
+  react/sort-comp:
+    - 2
+    - order:
+      - static-variables
+      - instance-variables
+      - constructor
+      - static-methods
+      - lifecycle
+      - everything-else
+      - render
+  jsx-a11y/media-has-caption: 0
+  jsx-a11y/click-events-have-key-events: 0
+  jsx-a11y/label-has-for: 0
+  jsx-a11y/anchor-is-valid: 0
+  jsx-a11y/no-static-element-interactions: 0
+  jsx-a11y/mouse-events-have-key-events: 0
+  object-curly-newline: 1
+  import/no-named-as-default: 2
+  import/named: 2
+  no-unused-expressions:
+    - 2
+    - allowShortCircuit: true
+      allowTernary: true
+  no-param-reassign: 1
+

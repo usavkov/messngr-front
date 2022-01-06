@@ -1,3 +1,4 @@
+import React from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { useSnackbar } from 'notistack';
 
@@ -30,10 +31,10 @@ export const useLogin = ({ onCompleted, onError, ...props } = {}) => {
       onError
         ? onError(err)
         : enqueueSnackbar(getGraphQLError(err), {
-            variant: 'error',
-            preventDuplicate: true,
-            action: getErrorAction,
-          });
+          variant: 'error',
+          preventDuplicate: true,
+          action: getErrorAction,
+        });
     },
     onCompleted(variables) {
       onCompleted && onCompleted(variables);

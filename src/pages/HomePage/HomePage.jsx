@@ -3,10 +3,9 @@ import { useRouteMatch, useHistory, useLocation } from 'react-router-dom';
 import { Grid } from '@mui/material';
 
 import { useAuth } from '../../common/hooks';
-import { ContentPane, DetailsPane, HomePane } from "../../components"
+import { ContentPane, DetailsPane, HomePane } from '../../components';
 
-
-export const HomePage = () => {
+export function HomePage() {
   const { user, logout } = useAuth();
   const history = useHistory();
   const { pathname } = useLocation();
@@ -24,5 +23,5 @@ export const HomePage = () => {
       <ContentPane />
       <DetailsPane />
     </Grid>
-  )
+  );
 }

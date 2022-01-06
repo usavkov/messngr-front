@@ -12,15 +12,15 @@ import {
   Typography,
 } from '@mui/material';
 
+import { green } from '@mui/material/colors';
 import {
   Checkbox,
   TextField,
 } from '../../common/components';
 import { useLogin } from '../../common/hooks';
 import { PAGE_SIGN_UP } from '../../constants';
-import { green } from '@mui/material/colors';
 
-export const LoginPage = () => {
+export function LoginPage() {
   const { control, handleSubmit } = useForm();
 
   const { login, isLoading } = useLogin();
@@ -33,7 +33,7 @@ export const LoginPage = () => {
       maxWidth="xs"
       sx={{
         display: 'flex',
-        minHeight: '100vh'
+        minHeight: '100vh',
       }}
     >
       <Box
@@ -124,4 +124,4 @@ export const LoginPage = () => {
       </Box>
     </Container>
   );
-};
+}

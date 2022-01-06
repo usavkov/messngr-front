@@ -7,10 +7,10 @@ import { DynamicRoute } from '../DynamicRoute';
 
 import { DialogContent } from '../../Dialogs';
 
-export const ContentPane = () => {
+export function ContentPane() {
   const { logout } = useAuth();
   const history = useHistory();
-  const { path } = useRouteMatch()
+  const { path } = useRouteMatch();
 
   return (
     <Grid
@@ -28,4 +28,4 @@ export const ContentPane = () => {
       />
     </Grid>
   );
-};
+}

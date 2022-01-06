@@ -1,6 +1,6 @@
-import { useLazyQuery } from "@apollo/client";
+import { useLazyQuery } from '@apollo/client';
 
-import { SEARCH_USERS } from "../../../GraphQL/queries";
+import { SEARCH_USERS } from '../../../GraphQL/queries';
 
 export const useUsersSearch = (options) => {
   const [searchUsers, { data, loading, ...rest }] = useLazyQuery(SEARCH_USERS, options);
@@ -9,6 +9,6 @@ export const useUsersSearch = (options) => {
     searchUsers,
     isLoading: loading,
     users: data?.searchUsers ?? [],
-    ...rest
-  }
+    ...rest,
+  };
 };

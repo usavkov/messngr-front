@@ -5,7 +5,7 @@ import { GET_ALL_USERS } from '../../GraphQL/queries';
 
 import { columns } from './tableConfig';
 
-export const UsersList = () => {
+export function UsersList() {
   const { data, errors, loading } = useQuery(GET_ALL_USERS);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
@@ -14,9 +14,9 @@ export const UsersList = () => {
     onChange: setSelectedRowKeys,
   };
 
-  const tableData = data?.users?.map(user => ({ key: user.id, ...user }))
+  const tableData = data?.users?.map(user => ({ key: user.id, ...user }));
 
   return (
     <>Hi, users</>
   );
-};
+}

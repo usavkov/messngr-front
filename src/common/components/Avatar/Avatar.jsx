@@ -1,11 +1,11 @@
 import { head } from 'lodash';
 
-import { Avatar } from "@mui/material";
+import { Avatar } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-import { getColor } from "../../../utils";
+import { getColor } from '../../../utils';
 
-const AvatarComponent = ({
+function AvatarComponent({
   id,
   src,
   username,
@@ -13,10 +13,10 @@ const AvatarComponent = ({
   sx,
   children,
   ...props
-}) => {
+}) {
   const theme = useTheme();
 
-  if (isLoading) return 'Loading...'
+  if (isLoading) return 'Loading...';
 
   return (
     <Avatar
@@ -24,13 +24,13 @@ const AvatarComponent = ({
       src={src}
       sx={{
         bgcolor: getColor({ id }),
-        ...sx
+        ...sx,
       }}
       {...props}
     >
       {children ?? head(username)?.toUpperCase()}
     </Avatar>
-  )
-};
+  );
+}
 
 export default AvatarComponent;

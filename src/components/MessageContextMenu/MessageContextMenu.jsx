@@ -1,13 +1,13 @@
 import { Divider, Menu, MenuItem } from '@mui/material';
 import { useDeleteMessage } from '../../common/hooks';
 
-export const MessageContextMenu = ({
+export function MessageContextMenu({
   anchorPosition,
   messageId,
   onClose,
   isOpen,
   isFromCurrentUser,
-}) => {
+}) {
   // TODO: add confirm modal on delete
   const { deleteMessage } = useDeleteMessage(messageId);
 
@@ -35,4 +35,4 @@ export const MessageContextMenu = ({
       )}
     </Menu>
   );
-};
+}

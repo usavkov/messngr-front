@@ -1,6 +1,6 @@
-import { useMutation } from "@apollo/client";
+import { useMutation } from '@apollo/client';
 
-import { SEND_MESSAGE } from "../../../GraphQL/mutations";
+import { SEND_MESSAGE } from '../../../GraphQL/mutations';
 
 export const useSendMessage = ({
   onError,
@@ -18,5 +18,5 @@ export const useSendMessage = ({
     message: data?.sendMessage,
     isLoading: loading,
     ...rest,
-  }
+  };
 };

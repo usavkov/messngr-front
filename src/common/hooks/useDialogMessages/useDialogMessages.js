@@ -8,7 +8,9 @@ export const useDialogMessages = (
   dialogId,
   { onCompleted, onError, ...props } = {},
 ) => {
-  const { data, loading, subscribeToMore, ...rest } = useQuery(
+  const {
+    data, loading, subscribeToMore, ...rest
+  } = useQuery(
     GET_DIALOG_MESSAGES,
     {
       variables: {
@@ -30,12 +32,10 @@ export const useDialogMessages = (
         document: MESSAGE_SENT_SUBSCRIPTION,
         updateQuery: (prev, { subscriptionData }) => {
           if (!subscriptionData.data) return prev;
-  
+
           const newMessage = subscriptionData.data.messageSent;
-  
-          return Object.assign({}, prev, {
-            getMessagesByDialogId: [newMessage, ...prev.getMessagesByDialogId]
-          });
+
+          return { ...prev, getMessagesByDialogId: [newMessage, ...prev.getMessagesByDialogId] };
         },
       }),
 
@@ -43,15 +43,13 @@ export const useDialogMessages = (
         document: MESSAGE_DELETED_SUBSCRIPTION,
         updateQuery: (prev, { subscriptionData }) => {
           if (!subscriptionData.data) return prev;
-  
+
           const messageToDelete = subscriptionData.data.messageDeleted;
-  
-          return Object.assign({}, prev, {
-            getMessagesByDialogId: prev.getMessagesByDialogId.filter(({ id }) => id !== messageToDelete.id)
-          });
+
+          return { ...prev, getMessagesByDialogId: prev.getMessagesByDialogId.filter(({ id }) => id !== messageToDelete.id) };
         },
       }),
-    ]
+    ];
 
     return () => unsubscribeAll.forEach(unsubscribe => unsubscribe());
   }, [subscribeToMore]);

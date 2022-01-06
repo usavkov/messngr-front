@@ -3,14 +3,14 @@ import { Route, Redirect } from 'react-router-dom';
 import { useAuth } from '../../common/hooks';
 import { PAGE_HOME, PAGE_LOGIN } from '../../constants';
 
-export const DynamicRoute = ({
+export function DynamicRoute({
   component,
   path,
   exact,
   authorized,
   guest,
   ...rest
-}) => {
+}) {
   const { user } = useAuth();
 
   if (authorized && !user) return <Redirect to={PAGE_LOGIN} />;
@@ -24,4 +24,4 @@ export const DynamicRoute = ({
       {...rest}
     />
   );
-};
+}

@@ -4,13 +4,13 @@ import { useForm } from 'react-hook-form';
 import { Box } from '@mui/material';
 
 // TODO: handle child inputs in deep level
-export const Form = ({
+export function Form({
   children,
   defaultValues,
   onSubmit,
   ...props
-}) => {
-  const { register, handleSubmit } = useForm({ defaultValues })
+}) {
+  const { register, handleSubmit } = useForm({ defaultValues });
 
   return (
     <Box
@@ -22,14 +22,14 @@ export const Form = ({
         console.log(children, child);
         return child.props.name
           ? React.createElement(child.type, {
-              ...{
-                ...child.props,
-                key: child.props.name,
-                register,
-              }
-            })
+            ...{
+              ...child.props,
+              key: child.props.name,
+              register,
+            },
+          })
           : child;
-       })}
+      })}
     </Box>
-  )
+  );
 }

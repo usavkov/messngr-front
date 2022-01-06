@@ -8,17 +8,16 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
-import { ThemeProvider } from '@mui/system';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { SnackbarProvider } from 'notistack';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 
-import { AuthProvider, theme } from './utils';
+import { AuthProvider } from './utils';
 import { MAX_SNACK } from './constants';
 
-import App from './App';
+import { App } from './App';
 
 import './index.scss';
 
@@ -37,7 +36,7 @@ const wsClient = new SubscriptionClient(
 wsClient.use([
   {
     applyMiddleware(operationOptions, next) {
-      operationOptions['token'] = returnJWT();
+      operationOptions.token = returnJWT();
       next();
     },
   },
@@ -50,22 +49,20 @@ const httpLink = new HttpLink({
   credentials: 'same-origin',
 });
 
-const authLink = setContext((_, { headers }) => {
-  return {
-    headers: {
-      ...headers,
-      authorization: returnJWT(),
-    },
-  };
-});
+const authLink = setContext((_, { headers }) => ({
+  headers: {
+    ...headers,
+    authorization: returnJWT(),
+  },
+}));
 
 const splitLink = split(
   ({ query }) => {
     const definition = getMainDefinition(query);
 
     return (
-      definition.kind === 'OperationDefinition' &&
-      definition.operation === 'subscription'
+      definition.kind === 'OperationDefinition'
+      && definition.operation === 'subscription'
     );
   },
   wsLink,

@@ -7,7 +7,7 @@ import { IconButton, Paper } from '@mui/material';
 import { TextField } from '../TextField';
 import { keyMap } from '../../../constants';
 
-export const MessageBox = ({ onSubmit, sx, inputSx }) => {
+export function MessageBox({ onSubmit, sx, inputSx }) {
   const { control, handleSubmit, reset } = useForm();
 
   const onSendMessage = (e) => {
@@ -20,8 +20,8 @@ export const MessageBox = ({ onSubmit, sx, inputSx }) => {
 
   const hotKeysHandlers = {
     sendMessage() {
-      console.log('handled')
-    }
+      console.log('handled');
+    },
   };
 
   return (
@@ -66,4 +66,4 @@ export const MessageBox = ({ onSubmit, sx, inputSx }) => {
       </Paper>
     </HotKeys>
   );
-};
+}

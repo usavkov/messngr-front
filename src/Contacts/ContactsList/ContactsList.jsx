@@ -7,7 +7,7 @@ import { SearchInput } from '../../common/components';
 import { useUsersSearch } from '../../common/hooks';
 import { ContactsListItem } from '../ContactsListItem';
 
-export const ContactsList = () => {
+export function ContactsList() {
   const history = useHistory();
   const { url } = useRouteMatch();
   const { searchUsers, users, isLoading: isSearchLoading } = useUsersSearch();
@@ -27,7 +27,7 @@ export const ContactsList = () => {
 
   const onChange = (user) =>
     history.push({
-      pathname: `${url}${user ? '/' + user?.id : ''}`,
+      pathname: `${url}${user ? `/${user?.id}` : ''}`,
     });
 
   return (
@@ -48,4 +48,4 @@ export const ContactsList = () => {
       <Divider variant="middle" />
     </>
   );
-};
+}

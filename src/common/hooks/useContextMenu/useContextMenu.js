@@ -9,9 +9,9 @@ export const useContextMenu = () => {
     setContextMenu(
       contextMenu === null
         ? {
-            mouseX: event.clientX - 2,
-            mouseY: event.clientY - 4,
-          }
+          mouseX: event.clientX - 2,
+          mouseY: event.clientY - 4,
+        }
         : null,
     );
   };

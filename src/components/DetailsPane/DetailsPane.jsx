@@ -1,10 +1,11 @@
 import { Grid } from '@mui/material';
-import { useParams } from 'react-router-dom';
-import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
+import {
+  useParams, useHistory, useLocation, useRouteMatch,
+} from 'react-router-dom';
 
 import { useAuth } from '../../common/hooks';
 
-export const DetailsPane = ({ open }) => {
+export function DetailsPane({ open }) {
   const { user, logout } = useAuth();
   const history = useHistory();
   const locations = useLocation();
@@ -21,4 +22,4 @@ export const DetailsPane = ({ open }) => {
       Details
     </Grid>
   );
-};
+}

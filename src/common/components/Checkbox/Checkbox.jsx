@@ -1,7 +1,7 @@
-import { Checkbox, FormControlLabel } from "@mui/material";
-import { useController } from "react-hook-form";
+import { Checkbox, FormControlLabel } from '@mui/material';
+import { useController } from 'react-hook-form';
 
-const CheckboxComponent = ({
+function CheckboxComponent({
   control,
   defaultValue = false,
   label = '',
@@ -9,7 +9,7 @@ const CheckboxComponent = ({
   name,
   rules,
   ...rest
-}) => {
+}) {
   const {
     field: { value, ...field },
     // fieldState,
@@ -25,15 +25,15 @@ const CheckboxComponent = ({
     <FormControlLabel
       label={label}
       {...labelProps}
-      control={
+      control={(
         <Checkbox
           checked={value}
           {...field}
           {...rest}
         />
-      }
+      )}
     />
-  )
-};
+  );
+}
 
 export default CheckboxComponent;

@@ -1,14 +1,13 @@
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch } from 'react-router-dom';
 
-import { Grid } from "@mui/material";
+import { Grid } from '@mui/material';
 
-import { CONTACTS_PATH, DIALOGS_PATH } from "../../constants";
-import { Navigation, DynamicRoute, UserHeader } from "../index";
-import { ContactsList } from "../../Contacts";
-import { DialogsList } from "../../Dialogs";
+import { CONTACTS_PATH, DIALOGS_PATH } from '../../constants';
+import { Navigation, DynamicRoute, UserHeader } from '../index';
+import { ContactsList } from '../../Contacts';
+import { DialogsList } from '../../Dialogs';
 
-
-export const HomePane = () => {
+export function HomePane() {
   const { path } = useRouteMatch();
 
   return (
@@ -35,5 +34,5 @@ export const HomePane = () => {
 
       <Navigation />
     </Grid>
-  )
-};
+  );
+}
