@@ -39,6 +39,9 @@ export function DialogsListItem({
 
   const isActive = activeDialog === dialogId;
 
+  const getBgColorForCurrentUser = () => (isCurrentUser ? '#deffd9' : null);
+  const getBgColorForUser = () => (isActive ? '#f5e9da' : getBgColorForCurrentUser());
+
   const previewMessage = (
     <Typography
       noWrap
@@ -70,7 +73,7 @@ export function DialogsListItem({
     >
       <ListItemAvatar>
         <AvatarBadge
-          badgebgcolor={isActive ? '#f5e9da' : isCurrentUser ? '#deffd9' : null}
+          badgebgcolor={getBgColorForUser()}
           status={false}
           hide={isCurrentUser}
         >

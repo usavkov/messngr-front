@@ -1,20 +1,6 @@
-import { useSubscription } from '@apollo/client';
-import {
-  AutoSizer,
-  CellMeasurer,
-  CellMeasurerCache,
-  List,
-  WindowScroller,
-} from 'react-virtualized';
-
 import { Box } from '@mui/system';
 
-export function Content({ children, itemCount }) {
-  // const rowRenderer = ({ key, index, style, ...rest }) => {
-
-  //   return children({ key, index, style });
-  // };
-
+export function Content({ children }) {
   return (
     <Box
       sx={{
@@ -28,15 +14,3 @@ export function Content({ children, itemCount }) {
     </Box>
   );
 }
-
-{ /* <AutoSizer>
-      {({ height, width }) => (
-        <List
-          height={height}
-          rowCount={itemCount}
-          rowHeight={60} // TODO: adjust
-          rowRenderer={rowRenderer}
-          width={width}
-        />
-      )}
-    </AutoSizer> */ }

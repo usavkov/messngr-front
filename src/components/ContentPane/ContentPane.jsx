@@ -1,15 +1,12 @@
-import { Grid, Paper } from '@mui/material';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { Grid } from '@mui/material';
+import { useRouteMatch } from 'react-router-dom';
 
-import { useAuth } from '../../common/hooks';
 import { DIALOGS_PATH } from '../../constants';
 import { DynamicRoute } from '../DynamicRoute';
 
 import { DialogContent } from '../../Dialogs';
 
 export function ContentPane() {
-  const { logout } = useAuth();
-  const history = useHistory();
   const { path } = useRouteMatch();
 
   return (

@@ -1,28 +1,27 @@
-import { useLocation, useRouteMatch } from 'react-router-dom';
-
 import { List, Typography } from '@mui/material';
 
 import { useAuth, useUserDialogs } from '../../common/hooks';
 import { DialogsListItem } from '../DialogsListItem';
 
-export const DialogsList = () => {
+export function DialogsList() {
   const { user } = useAuth();
   const { dialogs, isLoading } = useUserDialogs();
-  const { pathname } = useLocation();
-  const { url } = useRouteMatch();
 
-  const activeDialog = pathname.match(new RegExp(`${url}\/(.+)\/?`))?.[1];
+  // const activeDialog = pathname.match(new RegExp(`${url}\/(.+)\/?`))?.[1];
+  const activeDialog = false;
 
   if (isLoading) return 'Loading...';
+
+  const getInterlocutor = (interlocutors, id) => (
+    interlocutors.length === 2
+      ? user.userId !== id
+      : user.userId === id
+  );
 
   return dialogs.length ? (
     <List disablePadding>
       {dialogs.map(({ id, interlocutors, messages }) => {
-        const interlocutor = interlocutors.find(({ id: interlocutorId }) =>
-          interlocutors.length === 2
-            ? user.userId !== interlocutorId
-            : user.userId === interlocutorId,
-        );
+        const interlocutor = interlocutors.find(({ id: interlocutorId }) => getInterlocutor(interlocutors, interlocutorId));
         const lastMessage = messages[0];
         const isCurrentUser = user.userId === interlocutor?.id;
 
@@ -52,4 +51,4 @@ export const DialogsList = () => {
       There are no dialogues yet
     </Typography>
   );
-};
+}

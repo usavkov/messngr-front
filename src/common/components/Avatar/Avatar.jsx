@@ -1,7 +1,7 @@
 import { head } from 'lodash';
 
 import { Avatar } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+// import { useTheme } from '@mui/material/styles';
 
 import { getColor } from '../../../utils';
 
@@ -14,7 +14,7 @@ function AvatarComponent({
   children,
   ...props
 }) {
-  const theme = useTheme();
+  // const theme = useTheme();
 
   if (isLoading) return 'Loading...';
 

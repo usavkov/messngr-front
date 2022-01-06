@@ -1,7 +1,7 @@
 {
-  "name": "client",
+  "name": "messngr-front",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@apollo/client": "^3.4.16",
     "@emotion/react": "^11.7.1",
@@ -54,8 +54,9 @@
     }
   },
   "lint-staged": {
-    "*.{js, jsx}": [
-      "yarn run lint:write"
+    "*.(js|jsx)": [
+      "lint:write",
+      "test"
     ]
   },
   "browserslist": {

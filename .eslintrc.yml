@@ -39,27 +39,23 @@ rules:
       imports: always-multiline
       exports: always-multiline
   no-underscore-dangle: 0
-  import/prefer-default-export: 0
-  import/no-extraneous-dependencies:
+  no-unused-vars:
     - 2
-    - devDependencies:
-      - "./.storybook/**"
-      - "stories/**"
-      - "**/*.spec.js*"
+    - ignoreRestSiblings: true
+      argsIgnorePattern: "^_"
+
   arrow-parens:
     - 0
     - as-needed
     - requireForBlockBody: true
   implicit-arrow-linebreak: 0
+
   react/no-deprecated: 2
   react/prop-types: 1
   react/jsx-filename-extension: 0
   react/require-default-props: 0
   react/forbid-prop-types: 0
   react/no-children-prop: 0
-  react/jsx-one-expression-per-line:
-    - 2
-    - allow: single-child
   react/destructuring-assignment: 0
   react/jsx-indent:
     - 2
@@ -74,6 +70,9 @@ rules:
   react/jsx-fragments:
     - 2
     - syntax
+  react/jsx-one-expression-per-line:
+    - 2
+    - allow: single-child
   react/jsx-props-no-spreading: 0
   react/static-property-placement: 0
   react/state-in-constructor:
@@ -89,15 +88,27 @@ rules:
       - lifecycle
       - everything-else
       - render
+  react/react-in-jsx-scope: 0
+
   jsx-a11y/media-has-caption: 0
   jsx-a11y/click-events-have-key-events: 0
   jsx-a11y/label-has-for: 0
   jsx-a11y/anchor-is-valid: 0
   jsx-a11y/no-static-element-interactions: 0
   jsx-a11y/mouse-events-have-key-events: 0
+
   object-curly-newline: 1
+
   import/no-named-as-default: 2
   import/named: 2
+  import/prefer-default-export: 0
+  import/no-extraneous-dependencies:
+    - 2
+    - devDependencies:
+      - "./.storybook/**"
+      - "stories/**"
+      - "**/*.spec.js*"
+
   no-unused-expressions:
     - 2
     - allowShortCircuit: true

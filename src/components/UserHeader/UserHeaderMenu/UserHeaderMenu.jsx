@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { Logout, Settings } from '@mui/icons-material';
 import {
   Divider, ListItemIcon, Menu, MenuItem,

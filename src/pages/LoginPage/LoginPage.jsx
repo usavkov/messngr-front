@@ -116,7 +116,7 @@ export function LoginPage() {
               <Link
                 to={PAGE_SIGN_UP}
               >
-                Don't have an account? Sign Up
+                Do not have an account? Sign Up
               </Link>
             </Grid>
           </Grid>

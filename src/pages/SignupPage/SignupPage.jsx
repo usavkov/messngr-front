@@ -23,6 +23,8 @@ export function SignupPage() {
   const { login } = useLogin();
 
   const onSubmit = (variables) => {
+    console.log(isValid);
+
     signup({ variables }).then(({ errors }) => {
       !errors
         && login({
@@ -59,6 +61,9 @@ export function SignupPage() {
             alignItems: 'center',
           }}
         >
+          <Avatar>
+            <LockOutlinedIcon />
+          </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>

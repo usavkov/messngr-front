@@ -4,7 +4,6 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Typography,
 } from '@mui/material';
 
 import { Avatar } from '../../common/components';

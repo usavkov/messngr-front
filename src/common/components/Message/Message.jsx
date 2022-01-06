@@ -4,7 +4,10 @@ import { MessageContextMenu } from '../../../components';
 import { useContextMenu } from '../../hooks';
 
 export function Message({
-  content, currentUserId, from, to, id,
+  content,
+  currentUserId,
+  from,
+  id,
 }) {
   const {
     anchorPosition, closeMenu, onContextMenu, isOpen,

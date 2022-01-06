@@ -1,6 +1,6 @@
 import { Paper, Typography } from '@mui/material';
 
-export function DialogsHeader({ children }) {
+export function DialogsHeader() {
   return (
     <Paper
       variant="outlined"

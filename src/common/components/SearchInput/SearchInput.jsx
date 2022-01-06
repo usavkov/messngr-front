@@ -19,7 +19,7 @@ export function SearchInput({
 
   const fetch = useMemo(
     () =>
-      throttle((request, callback) => {
+      throttle((_request, _callback) => {
         searchFn({
           variables: { search: inputValue },
         });
@@ -41,7 +41,7 @@ export function SearchInput({
       filterSelectedOptions
       value={value}
       loading={isLoading}
-      isOptionEqualToValue={(option, value) => option.username = value}
+      isOptionEqualToValue={(option, val) => (option.username === val)}
       onChange={(_event, newValue) => {
         setValue(newValue);
         onChange && onChange(newValue);

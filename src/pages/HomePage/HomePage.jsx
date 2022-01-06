@@ -1,16 +1,8 @@
-import { useRouteMatch, useHistory, useLocation } from 'react-router-dom';
-
 import { Grid } from '@mui/material';
 
-import { useAuth } from '../../common/hooks';
 import { ContentPane, DetailsPane, HomePane } from '../../components';
 
 export function HomePage() {
-  const { user, logout } = useAuth();
-  const history = useHistory();
-  const { pathname } = useLocation();
-  const { path } = useRouteMatch();
-
   return (
     <Grid
       container
