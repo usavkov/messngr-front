@@ -1,6 +1,6 @@
 import { useParams, useLocation } from 'react-router-dom';
 
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 import { useAuth, useDialogMessages, useSendMessage } from '../../common/hooks';
 import { Message, MessageBox } from '../../common/components';
@@ -41,9 +41,22 @@ export function DialogContent() {
       <DialogsHeader />
 
       <Content itemCount={messages.length}>
-        {messages.map((message) => (
-          <Message key={message?.id} currentUserId={user?.userId} {...message} />
-        ))}
+        {
+          messages.length ? (
+            messages.map((message) => (
+              <Message
+                key={message?.id}
+                currentUserId={user?.userId}
+                {...message}
+              />
+            ))
+          )
+            : (
+              <Typography align="center" variant="overline">
+                No messages yet
+              </Typography>
+            )
+        }
       </Content>
 
       <MessageBox onSubmit={handleSend} />

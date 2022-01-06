@@ -39,6 +39,9 @@ export function Message({
           color: 'white',
           padding: '8px 16px',
           borderRadius: 6,
+          whiteSpace: 'pre-wrap',
+          textOverflow: 'ellipsis',
+          overflowX: 'hidden',
           '&:before': {
             content: '""',
             display: 'block',
