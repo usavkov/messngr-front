@@ -5,8 +5,12 @@ export const MESSAGE_DELETED_SUBSCRIPTION = gql`
     messageDeleted {
       type
       id
-      chatId
-      dialogId
+      chat {
+        id
+      }
+      dialog {
+        id
+      }
       createdAt
       updatedAt
       from

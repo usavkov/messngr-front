@@ -48,9 +48,6 @@ export function DialogsListItem({
       sx={{
         fontSize: 12,
         color: 'gray',
-        whiteSpace: 'pre-line',
-        maxHeight: '18px',
-        overflowY: 'hidden',
       }}
     >
       {lastMessage?.content}

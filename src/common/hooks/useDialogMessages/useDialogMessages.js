@@ -46,7 +46,12 @@ export const useDialogMessages = (
 
           const messageToDelete = subscriptionData.data.messageDeleted;
 
-          return { ...prev, getMessagesByDialogId: prev.getMessagesByDialogId.filter(({ id }) => id !== messageToDelete.id) };
+          return {
+            ...prev,
+            getMessagesByDialogId: prev.getMessagesByDialogId.filter(
+              ({ id }) => id !== messageToDelete.id
+            ),
+          };
         },
       }),
     ];

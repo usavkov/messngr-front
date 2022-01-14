@@ -47,7 +47,7 @@ export function Message({
             display: 'block',
             position: 'absolute',
             bottom: 12,
-            [isFromCurrentUser ? 'right' : 'left']: -3,
+            [isFromCurrentUser ? 'right' : 'left']: -5,
             width: 10,
             height: 10,
             bgcolor: isFromCurrentUser ? 'lightcoral' : '#469fbd',

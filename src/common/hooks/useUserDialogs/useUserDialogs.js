@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
-import { cloneDeep } from '@apollo/client/utilities';
 import { useEffect } from 'react';
+import { cloneDeep } from 'lodash';
 
 import { GET_USER_DIALOGS } from '../../../GraphQL/queries';
 import {
@@ -34,7 +34,7 @@ export const useUserDialogs = ({ onCompleted, onError, ...props } = {}) => {
 
           const newMessage = subscriptionData.data.messageSent;
           const dialog = prev.getUserDialogs.find(
-            ({ id }) => id === newMessage.dialogId,
+            ({ id }) => id === newMessage.dialog?.id,
           );
 
           const updatedDialog = {
@@ -63,7 +63,7 @@ export const useUserDialogs = ({ onCompleted, onError, ...props } = {}) => {
 
           const clonedDialog = cloneDeep(prev);
           const dialog = clonedDialog.getUserDialogs.find(
-            ({ id }) => id === messageToDelete.dialogId,
+            ({ id }) => id === messageToDelete?.dialog?.id,
           );
 
           dialog.messages = dialog?.messages?.filter(

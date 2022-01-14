@@ -55,8 +55,7 @@
   },
   "lint-staged": {
     "*.(js|jsx)": [
-      "lint:write",
-      "test"
+      "yarn run lint:write"
     ]
   },
   "browserslist": {

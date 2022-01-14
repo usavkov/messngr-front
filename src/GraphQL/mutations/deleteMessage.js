@@ -8,8 +8,12 @@ mutation DeleteMessage(
     messageId: $messageId
   ) {
     id
-    dialogId
-    chatId
+    dialog {
+      id
+    }
+    chat {
+      id
+    }
   }
 }
 `;

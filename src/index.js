@@ -71,7 +71,28 @@ const splitLink = split(
 
 const client = new ApolloClient({
   link: authLink.concat(splitLink),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          getMessagesByDialogId: {
+            merge(_existing, incoming) {
+              return incoming;
+            },
+          },
+        },
+      },
+      Dialog: {
+        fields: {
+          messages: {
+            merge(_existing, incoming) {
+              return incoming;
+            },
+          },
+        },
+      },
+    },
+  }),
 });
 
 ReactDOM.render(
