@@ -8,6 +8,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -21,13 +22,15 @@ import { App } from './App';
 
 import './index.scss';
 
+const env = process ? process.env : runtimeEnv();
+
 const returnJWT = () => {
   const token = localStorage.getItem('token');
   return token ? `Bearer ${token}` : null;
 };
 
 const wsClient = new SubscriptionClient(
-  process.env.REACT_APP_APOLLO_WS_SERVER_URI,
+  env.REACT_APP_APOLLO_WS_SERVER_URI,
   {
     reconnect: true,
   },
@@ -45,7 +48,7 @@ wsClient.use([
 const wsLink = new WebSocketLink(wsClient);
 
 const httpLink = new HttpLink({
-  uri: process.env.REACT_APP_APOLLO_HTTP_SERVER_URI,
+  uri: env.REACT_APP_APOLLO_HTTP_SERVER_URI,
   credentials: 'same-origin',
 });
 
