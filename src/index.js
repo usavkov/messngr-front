@@ -24,13 +24,16 @@ import './index.scss';
 
 const env = process ? process.env : runtimeEnv();
 
+console.log(env);
+console.log(runtimeEnv());
+
 const returnJWT = () => {
   const token = localStorage.getItem('token');
   return token ? `Bearer ${token}` : null;
 };
 
 const wsClient = new SubscriptionClient(
-  env.REACT_APP_APOLLO_WS_SERVER_URI,
+  env.REACT_APP_APOLLO_WS_SERVER_URI || 'ws://localhost:4000/qraphql',
   {
     reconnect: true,
   },
