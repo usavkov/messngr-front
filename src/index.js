@@ -24,7 +24,7 @@ import './index.scss';
 // TODO: find way to retrieve env vars properly
 const config = {
   api: 'https://messngr-back-stage.herokuapp.com/graphql',
-  ws: 'ws://messngr-back-stage.herokuapp.com/graphql',
+  ws: 'wss://messngr-back-stage.herokuapp.com/graphql',
 };
 
 const returnJWT = () => {
