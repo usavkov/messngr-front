@@ -8,7 +8,6 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -22,10 +21,11 @@ import { App } from './App';
 
 import './index.scss';
 
-const env = process ? process.env : runtimeEnv();
-
-console.log(env);
-console.log(runtimeEnv());
+// TODO: find way to retrieve env vars properly
+const config = {
+  api: 'https://messngr-back-stage.herokuapp.com/graphql',
+  ws: 'ws://messngr-back-stage.herokuapp.com/graphql',
+};
 
 const returnJWT = () => {
   const token = localStorage.getItem('token');
@@ -33,7 +33,7 @@ const returnJWT = () => {
 };
 
 const wsClient = new SubscriptionClient(
-  env.REACT_APP_WS_URL || 'ws://localhost:4000/qraphql',
+  process.env.REACT_APP_WS_URL || config.ws,
   {
     reconnect: true,
   },
@@ -51,7 +51,7 @@ wsClient.use([
 const wsLink = new WebSocketLink(wsClient);
 
 const httpLink = new HttpLink({
-  uri: env.REACT_APP_API_URL,
+  uri: process.env.REACT_APP_API_URL || config.api,
   credentials: 'same-origin',
 });
 

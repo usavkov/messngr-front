@@ -6,7 +6,6 @@
     "@apollo/client": "^3.4.16",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@mars/heroku-js-runtime-env": "^3.0.2",
     "@mui/icons-material": "5.2.5",
     "@mui/material": "^5.2.5",
     "@mui/system": "^5.2.6",
