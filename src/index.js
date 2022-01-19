@@ -33,7 +33,7 @@ const returnJWT = () => {
 };
 
 const wsClient = new SubscriptionClient(
-  env.REACT_APP_APOLLO_WS_SERVER_URI || 'ws://localhost:4000/qraphql',
+  env.REACT_APP_WS_URL || 'ws://localhost:4000/qraphql',
   {
     reconnect: true,
   },
@@ -51,7 +51,7 @@ wsClient.use([
 const wsLink = new WebSocketLink(wsClient);
 
 const httpLink = new HttpLink({
-  uri: env.REACT_APP_APOLLO_HTTP_SERVER_URI,
+  uri: env.REACT_APP_API_URL,
   credentials: 'same-origin',
 });
 
