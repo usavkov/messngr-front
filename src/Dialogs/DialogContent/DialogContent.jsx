@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 
 import { useAuth, useDialogMessages, useSendMessage } from '../../common/hooks';
 import { Message, MessageBox } from '../../common/components';
-import { Content } from '../../components';
+import { MessagesContent } from '../../components';
 import { DialogsHeader } from '../DialogsHeader';
 
 export function DialogContent() {
@@ -40,7 +40,7 @@ export function DialogContent() {
     >
       <DialogsHeader />
 
-      <Content itemCount={messages.length}>
+      <MessagesContent>
         {
           messages.length ? (
             messages.map((message) => (
@@ -57,7 +57,7 @@ export function DialogContent() {
               </Typography>
             )
         }
-      </Content>
+      </MessagesContent>
 
       <MessageBox onSubmit={handleSend} />
     </Box>

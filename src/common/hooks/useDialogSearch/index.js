@@ -1,0 +1,1 @@
+export { useDialogSearch } from './useDialogSearch';

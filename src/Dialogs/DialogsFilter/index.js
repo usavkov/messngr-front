@@ -1,0 +1,1 @@
+export { DialogsFilter } from './DialogsFilter';

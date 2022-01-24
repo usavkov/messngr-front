@@ -1,15 +1,17 @@
 import { useEffect, useMemo, useState } from 'react';
-import { noop, throttle } from 'lodash';
+import { debounce, noop } from 'lodash';
 
 import { Autocomplete, TextField } from '@mui/material';
 
 export function SearchInput({
+  autoComplete,
   id = 'search-input',
   label,
   searchFn = noop,
   options = [],
   renderInput,
   renderOption,
+  isAutocomplete = true,
   isLoading,
   onChange,
   ...rest
@@ -18,30 +20,32 @@ export function SearchInput({
   const [inputValue, setInputValue] = useState('');
 
   const fetch = useMemo(
-    () =>
-      throttle((_request, _callback) => {
+    () => (
+      debounce((_request, _callback) => {
         searchFn({
           variables: { search: inputValue },
         });
-      }, 400),
-    [searchFn, inputValue],
+      }, 500)
+    ),
+    [searchFn, inputValue]
   );
 
   useEffect(() => {
     fetch();
+
+    return () => fetch.cancel();
   }, [value, inputValue, fetch]);
 
-  return (
+  return isAutocomplete ? (
     <Autocomplete
       id={id}
       filterOptions={(x) => x}
       options={options}
-      autoComplete
+      autoComplete={autoComplete}
       includeInputInList
       filterSelectedOptions
       value={value}
-      loading={isLoading}
-      isOptionEqualToValue={(option, val) => (option.username === val)}
+      isOptionEqualToValue={(option, val) => option.username === val}
       onChange={(_event, newValue) => {
         setValue(newValue);
         onChange && onChange(newValue);
@@ -52,17 +56,24 @@ export function SearchInput({
       renderInput={
         renderInput
         ?? ((params) => (
-          <TextField
-            {...params}
-            label={label ?? 'Search'}
-            fullWidth
-          />
+          <TextField {...params} label={label ?? 'Search'} fullWidth />
         ))
       }
       renderOption={
-        renderOption
-        ?? ((props, option) => <li {...props}>{option?.label}</li>)
+        renderOption ?? ((props, option) => <li {...props}>{option?.label}</li>)
       }
+      {...rest}
+    />
+  ) : (
+    <TextField
+      id={id}
+      label={label}
+      value={inputValue}
+      autoComplete={!autoComplete && 'off'}
+      onChange={({ target }) => {
+        setInputValue(target.value);
+        onChange && onChange(target.value);
+      }}
       {...rest}
     />
   );

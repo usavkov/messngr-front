@@ -1,6 +1,6 @@
 import { Box } from '@mui/system';
 
-export function Content({ children }) {
+export function MessagesContent({ children }) {
   return (
     <Box
       sx={{
