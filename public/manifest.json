@@ -1,21 +1,31 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Messngr",
+  "name": "Web application Messngr",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "./icon/outlined/32x32.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "./icon/outlined/152x152.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "152x152"
     },
     {
-      "src": "logo512.png",
+      "src": "./icon/outlined/167x167.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "167x167"
+    },
+    {
+      "src": "./icon/outlined/180x180.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "./icon/outlined/192x192.png",
+      "sizes": "192x192",
+      "purpose": "maskable any"
     }
   ],
   "start_url": ".",

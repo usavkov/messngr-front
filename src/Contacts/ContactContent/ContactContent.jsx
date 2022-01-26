@@ -4,6 +4,8 @@ import { Box } from '@mui/material';
 
 import { Avatar } from '../../common/components';
 import { useUser } from '../../common/hooks';
+import { ContactActions } from '../ContactActions';
+import { ContactInfo } from '../ContactInfo';
 
 export function ContactContent() {
   const { userId } = useParams();
@@ -28,6 +30,8 @@ export function ContactContent() {
         src={user.profileImage}
         username={user.username}
       />
+      <ContactInfo />
+      <ContactActions />
     </Box>
   );
 }

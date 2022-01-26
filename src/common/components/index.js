@@ -1,6 +1,7 @@
 export { Avatar } from './Avatar';
 export { AvatarBadge } from './AvatarBadge';
 export { Checkbox } from './Checkbox';
+export { ErrorBoundary } from './ErrorBoundary';
 export { Form } from './Form';
 export { Message } from './Message';
 export { MessageBox } from './MessageBox';

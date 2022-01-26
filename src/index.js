@@ -14,6 +14,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { SnackbarProvider } from 'notistack';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 
+import { ErrorBoundary } from './common/components';
 import { AuthProvider } from './utils';
 import { MAX_SNACK } from './constants';
 
@@ -103,17 +104,19 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <BrowserRouter>
-        <AuthProvider>
-          {/* <ThemeProvider theme={theme}> */}
-          <SnackbarProvider maxSnack={MAX_SNACK}>
-            <App />
-          </SnackbarProvider>
-          {/* </ThemeProvider> */}
-        </AuthProvider>
-      </BrowserRouter>
-    </ApolloProvider>
+    <ErrorBoundary>
+      <ApolloProvider client={client}>
+        <BrowserRouter>
+          <AuthProvider>
+            {/* <ThemeProvider theme={theme}> */}
+            <SnackbarProvider maxSnack={MAX_SNACK}>
+              <App />
+            </SnackbarProvider>
+            {/* </ThemeProvider> */}
+          </AuthProvider>
+        </BrowserRouter>
+      </ApolloProvider>
+    </ErrorBoundary>
   </React.StrictMode>,
   document.getElementById('root'),
 );

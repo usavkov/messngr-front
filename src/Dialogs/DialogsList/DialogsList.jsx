@@ -4,7 +4,7 @@ import { useAuth } from '../../common/hooks';
 import { DialogsListItem } from '../DialogsListItem';
 
 export function DialogsList({
-  dialogs = [],
+  dialogs,
   isLoading,
 }) {
   const { user } = useAuth();
@@ -19,7 +19,7 @@ export function DialogsList({
   if (isLoading) return 'Loading...';
 
   return (
-    dialogs.length ? (
+    dialogs?.length ? (
       <List disablePadding>
         {dialogs.map(({ id, interlocutors, messages }) => {
           const interlocutor = interlocutors.find(({ id: interlocutorId }) => (

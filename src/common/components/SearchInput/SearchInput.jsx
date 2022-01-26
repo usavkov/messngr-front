@@ -25,16 +25,18 @@ export function SearchInput({
         searchFn({
           variables: { search: inputValue },
         });
-      }, 500)
+      }, 400)
     ),
     [searchFn, inputValue]
   );
 
   useEffect(() => {
-    fetch();
+    inputValue ? fetch() : searchFn({
+      variables: { search: '' },
+    });
 
     return () => fetch.cancel();
-  }, [value, inputValue, fetch]);
+  }, [inputValue, fetch]);
 
   return isAutocomplete ? (
     <Autocomplete
