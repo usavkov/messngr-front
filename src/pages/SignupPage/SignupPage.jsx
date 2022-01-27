@@ -1,13 +1,20 @@
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {
-  Avatar, Box, Button, Grid, Paper, Typography,
+  Box,
+  Button,
+  Grid,
+  Paper,
+  Typography,
 } from '@mui/material';
 
 import { PAGE_LOGIN } from '../../constants';
-import { Checkbox, TextField } from '../../common/components';
+import {
+  Checkbox,
+  MessngrIcon,
+  TextField,
+} from '../../common/components';
 import { useLogin, useSignup } from '../../common/hooks';
 
 import './SignupPage.scss';
@@ -61,9 +68,14 @@ export function SignupPage() {
             alignItems: 'center',
           }}
         >
-          <Avatar>
-            <LockOutlinedIcon />
-          </Avatar>
+          <MessngrIcon
+            sx={{
+              width: 64,
+              height: 64,
+            }}
+            outlined
+          />
+
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>

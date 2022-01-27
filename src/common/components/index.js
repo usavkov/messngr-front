@@ -5,5 +5,6 @@ export { ErrorBoundary } from './ErrorBoundary';
 export { Form } from './Form';
 export { Message } from './Message';
 export { MessageBox } from './MessageBox';
+export { MessngrIcon } from './MessngrIcon';
 export { SearchInput } from './SearchInput';
 export { TextField } from './TextField';

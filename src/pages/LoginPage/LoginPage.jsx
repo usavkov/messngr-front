@@ -1,9 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {
-  Avatar,
   Box,
   Button,
   CircularProgress,
@@ -15,6 +13,7 @@ import {
 import { green } from '@mui/material/colors';
 import {
   Checkbox,
+  MessngrIcon,
   TextField,
 } from '../../common/components';
 import { useLogin } from '../../common/hooks';
@@ -44,9 +43,12 @@ export function LoginPage() {
           justifyContent: 'center',
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          <LockOutlinedIcon />
-        </Avatar>
+        <MessngrIcon
+          sx={{
+            width: 96,
+            height: 96,
+          }}
+        />
         <Typography component="h1" variant="h5">
           Login
         </Typography>

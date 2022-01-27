@@ -1,0 +1,1 @@
+export { MessngrIcon } from './MessngrIcon';
