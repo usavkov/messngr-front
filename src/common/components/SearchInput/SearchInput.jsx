@@ -3,6 +3,8 @@ import { debounce, noop } from 'lodash';
 
 import { Autocomplete, TextField } from '@mui/material';
 
+import { USER_SEARCH_LIMIT } from '../../../constants';
+
 export function SearchInput({
   autoComplete,
   id = 'search-input',
@@ -23,7 +25,10 @@ export function SearchInput({
     () => (
       debounce((_request, _callback) => {
         searchFn({
-          variables: { search: inputValue },
+          variables: {
+            search: inputValue,
+            limit: USER_SEARCH_LIMIT,
+          },
         });
       }, 400)
     ),
@@ -31,9 +36,7 @@ export function SearchInput({
   );
 
   useEffect(() => {
-    inputValue ? fetch() : searchFn({
-      variables: { search: '' },
-    });
+    (inputValue?.length > 1) && fetch();
 
     return () => fetch.cancel();
   }, [inputValue, fetch]);

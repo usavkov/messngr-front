@@ -3,9 +3,13 @@ import { gql } from '@apollo/client';
 export const SEARCH_DIALOGS = gql`
   query SearchDialogs(
     $search: String!
+    $limit: Int
+    $offset: Int
   ) {
     searchDialogs(
       search: $search
+      limit: $limit
+      offset: $offset
     ) {
       id
       interlocutors {
